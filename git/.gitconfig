@@ -1,0 +1,45 @@
+[user]
+	name = ChromaMaster
+	email = vladtel.dev@gmail.com
+[init]
+	defaultBranch = main
+[commit]
+	# By default sign the commits, same as doing git commit -S
+	gpgSign = true
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	# Use a global gitignore file
+	excludesfile = ~/.gitignore
+[format]
+	# Add a signature to the commit, same as doing git commit -s
+	# Signoff example:
+	# 	Signed-off-by: Humpty Dumpty <humpty.dumpty@example.com>
+	signoff = true
+[alias]
+	s = status
+	ap = add --patch
+	d = diff
+	nd = !git --no-pager diff
+	ds = diff --staged
+	nds = !git --no-pager diff --staged
+	l = log --oneline --decorate --color
+	amend = commit --amend
+	pullh = !git pull -- origin $(git branch --show-current)
+	ltag = describe --tags --abbrev=0
+	pushf = push --force-with-lease
+	alias = !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | sort
+    chash = rev-parse --short HEAD
+    chashl = rev-parse HEAD
+[push]
+	default = current
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[includeIf "gitdir:~/Workspace/Work/"]
+	path = ~/Workspace/Work/.gitconfig-work
+[includeIf "gitdir:~/Workspace/Personal/"]
+	path = ~/Workspace/Personal/.gitconfig-personal
+

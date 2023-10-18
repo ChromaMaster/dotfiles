@@ -1,4 +1,4 @@
-all: zsh tmux
+all: zsh tmux git
 
 zsh:
     rm -rf ~/.zshrc
@@ -7,3 +7,8 @@ zsh:
 tmux:
     rm -rf ~/.tmux.conf
     ln -s $PWD/tmux/.tmux.conf ~/
+
+git:
+    rm -rf ~/.gitignore ~/.gitconfig
+    ln -s $PWD/git/.gitignore ~/
+    ln -s $PWD/git/.gitconfig ~/
