@@ -3,6 +3,7 @@
 	email = vladtel.dev@gmail.com
 [init]
 	defaultBranch = main
+	templateDir = ~/.git-template
 [commit]
 	# By default sign the commits, same as doing git commit -S
 	gpgSign = true

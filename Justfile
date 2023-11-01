@@ -9,6 +9,7 @@ tmux:
     ln -s $PWD/tmux/.tmux.conf ~/
 
 git:
-    rm -rf ~/.gitignore ~/.gitconfig
+    rm -rf ~/.gitignore ~/.gitconfig ~/.git-template
     ln -s $PWD/git/.gitignore ~/
     ln -s $PWD/git/.gitconfig ~/
+    ln -s $PWD/git/.git-template ~/
