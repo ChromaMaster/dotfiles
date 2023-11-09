@@ -31,6 +31,7 @@
 	alias = !git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | sort
     chash = rev-parse --short HEAD
     chashl = rev-parse HEAD
+    rs = restore --staged
 [push]
 	default = current
 [pull]
