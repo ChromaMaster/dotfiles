@@ -1,8 +1,10 @@
 all: zsh tmux git
 
 zsh:
-    rm -rf ~/.zshrc
+    rm -rf ~/.zshrc ~/.zprofile ~/.profile
     ln -s $PWD/zsh/.zshrc ~/
+    ln -s $PWD/zsh/.zprofile ~/
+    ln -s $PWD/zsh/.profile ~/
 
 tmux:
     rm -rf ~/.tmux.conf
