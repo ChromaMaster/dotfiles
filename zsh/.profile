@@ -8,40 +8,23 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-  . "$HOME/.bashrc"
-    fi
-fi
+# Append "$1" to $PATH when not already in.
+append_path () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
+}
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+# Append our default paths
+[ -d "$HOME/bin" ] && append_path "$HOME/bin"
+[ -d "$HOME/.local/bin" ] && append_path "$HOME/.local/bin"
 
 # Go
-export GOPATH="$HOME/go"
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
+append_path "$(go env GOPATH)/bin"
 
-# Espressif
-#export IDF_PATH="$HOME/.espressif/esp-idf"
-#. $HOME/.espressif/esp-idf/export.sh
+# Ruby & Ge
+append_path "$(gem env user_gemhome)/bin"
 
-# Make options
-#export MAKEFLAGS="-j 8"
-export CMAKE_GENERATOR="Ninja"
-
-#Poetry
-#export PATH="$HOME/.poetry/bin:$PATH"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin"
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
