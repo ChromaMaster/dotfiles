@@ -1,4 +1,4 @@
-all: zsh tmux git starship
+all: zsh tmux git starship neovim
 
 zsh:
     rm -rf ~/.zshrc ~/.zprofile ~/.profile
@@ -19,3 +19,7 @@ git:
 starship:
     rm -rf ~/.config/starship.toml
     ln -s $PWD/starship/starship.toml ~/.config
+
+neovim:
+    rm -rf ~/.config/nvim
+    ln -s $PWD/neovim ~/.config/nvim
