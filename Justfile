@@ -1,4 +1,4 @@
-all: zsh tmux git
+all: zsh tmux git starship
 
 zsh:
     rm -rf ~/.zshrc ~/.zprofile ~/.profile
@@ -15,3 +15,7 @@ git:
     ln -s $PWD/git/.gitignore ~/
     ln -s $PWD/git/.gitconfig ~/
     ln -s $PWD/git/.git-template ~/
+
+starship:
+    rm -rf ~/.config/starship.toml
+    ln -s $PWD/starship/starship.toml ~/.config
