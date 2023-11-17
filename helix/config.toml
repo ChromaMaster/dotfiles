@@ -17,5 +17,8 @@ select = "underline"
 hidden = false
 
 [keys.normal]
-"C-d" = ["half_page_down", "goto_window_center"] 
-"C-u" = ["half_page_up", "goto_window_center"]
+C-d = ["half_page_down", "goto_window_center"]
+C-u = ["half_page_up", "goto_window_center"]
+
+[keys.normal."space"]
+o = "file_picker_in_current_buffer_directory"
