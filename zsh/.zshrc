@@ -127,6 +127,7 @@ alias cat="bat"
 ## Shortcuts
 alias nv="nvim"
 alias open="xdg-open"
+alias hx="helix"
 
 alias nvrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
