@@ -7,6 +7,7 @@
 [commit]
 	# By default sign the commits, same as doing git commit -S
 	gpgSign = true
+	template = ~/.gitmessage
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	# Use a global gitignore file

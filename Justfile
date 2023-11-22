@@ -11,10 +11,11 @@ tmux:
     ln -s $PWD/tmux/.tmux.conf ~/
 
 git:
-    rm -rf ~/.gitignore ~/.gitconfig ~/.git-template
+    rm -rf ~/.gitignore ~/.gitconfig ~/.git-template ~/.gitmessage
     ln -s $PWD/git/.gitignore ~/
     ln -s $PWD/git/.gitconfig ~/
     ln -s $PWD/git/.git-template ~/
+    ln -s $PWD/git/.gitmessage ~/
 
 starship:
     rm -rf ~/.config/starship.toml
