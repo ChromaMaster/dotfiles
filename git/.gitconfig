@@ -9,6 +9,7 @@
 	gpgSign = true
 	template = ~/.gitmessage
 [core]
+	editor = helix
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	# Use a global gitignore file
 	excludesfile = ~/.gitignore
