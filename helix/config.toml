@@ -4,6 +4,7 @@ theme = "catppuccin_macchiato"
 line-number = "relative"
 mouse = false
 cursorline = true
+auto-pairs = false # Disables automatic insertion of pairs to parentheses, brackets, etc.
 
 [editor.soft-wrap]
 enable = true
