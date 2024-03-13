@@ -132,6 +132,8 @@ alias hx="helix"
 alias nvrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 
+alias lsl="ls -l"
+
 # Docker
 alias docker_rm_all='docker rm $(docker ps --filter status=exited -q)'
 
