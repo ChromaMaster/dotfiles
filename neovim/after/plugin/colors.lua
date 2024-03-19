@@ -1,9 +1,5 @@
-require("rose-pine").setup({
-    --- @usage 'auto'|'main'|'moon'|'dawn'
-    variant = 'moon',
-    disable_background = true,
-    disable_italics = true,
-})
+-- Load the colorscheme here
+vim.cmd.colorscheme 'tokyonight-night'
 
-vim.cmd.colorscheme("rose-pine")
-
+-- You can configure highlights by doing something like
+vim.cmd.hi 'Comment gui=none'
