@@ -25,7 +25,7 @@
 	nd = !git --no-pager diff
 	ds = diff --staged
 	nds = !git --no-pager diff --staged
-	l = log --oneline --decorate --color
+	l = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -10
 	amend = commit --amend
 	pullh = !git pull -- origin $(git branch --show-current)
 	ltag = describe --tags --abbrev=0
