@@ -9,8 +9,9 @@ zsh:
 
 # Install tmux config
 tmux:
-    rm -rf ~/.tmux.conf
-    ln -s $PWD/tmux/.tmux.conf ~/
+    rm -rf ~/.config/tmux/
+    mkdir -p ~/.config/tmux
+    ln -s $PWD/tmux/tmux.conf ~/.config/tmux/tmux.conf
 
 # Install git config (gitignore, config, templates and message)
 git:
