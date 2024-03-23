@@ -1,4 +1,4 @@
-all: zsh tmux git starship neovim2 kitty helix
+all: zsh tmux git starship nvim kitty helix
 
 # Install zsh config
 zsh:
@@ -25,15 +25,20 @@ starship:
     rm -rf ~/.config/starship.toml
     ln -s $PWD/starship/starship.toml ~/.config
 
-# Install neovim config
+# Install previous neovim config (deprecated)
 neovim:
     rm -rf ~/.config/nvim
     ln -s $PWD/neovim ~/.config/nvim
 
-# Install neovim2 configuration (WIP config)
+# Install previous kickstart neovim2 configuration (deprecated)
 neovim2:
     rm -rf ~/.config/nvim
     ln -s $PWD/neovim2 ~/.config/nvim
+
+# Install neovim config
+nvim:
+    rm -rf ~/.config/nvim
+    ln -s $PWD/nvim ~/.config/nvim
 
 # Install kitty config
 kitty:
