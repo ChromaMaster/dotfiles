@@ -12,6 +12,7 @@ tmux:
     rm -rf ~/.config/tmux/
     mkdir -p ~/.config/tmux
     ln -s $PWD/tmux/tmux.conf ~/.config/tmux/tmux.conf
+    ln -s $PWD/tmux/theme.conf ~/.config/tmux/theme.conf
 
 # Install git config (gitignore, config, templates and message)
 git:
