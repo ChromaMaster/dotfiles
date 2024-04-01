@@ -1,3 +1,3 @@
 require("lazy").setup({
-    { import = "chromamaster.plugins" }
+	{ import = "chromamaster.plugins" },
 })

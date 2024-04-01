@@ -32,7 +32,6 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-
 -- Show highlight search and allow incremental
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -63,5 +62,3 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
-
-
