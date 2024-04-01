@@ -161,6 +161,7 @@ modules.xml
 .idea/sonarlint
 
 ### VisualStudioCode ###
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
