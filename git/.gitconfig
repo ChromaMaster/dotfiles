@@ -19,7 +19,7 @@
 	# 	Signed-off-by: Humpty Dumpty <humpty.dumpty@example.com>
 	signoff = true
 [alias]
-	s = status
+	s = status -s
 	ap = add --patch
 	d = diff
 	nd = !git --no-pager diff
