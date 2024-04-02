@@ -5,6 +5,9 @@
 -- vim.keymap.set("v", "<c-j>", ":m '<-2<CR>gv=gv")
 -- vim.keymap.set("v", "<c-k>", ":m '>+1<CR>gv=gv")
 
+-- Disable command history
+vim.keymap.set("n", "q:", "<nop>")
+
 -- Remap buffer operations
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>bn", ":bn<CR>", { desc = "Next buffer" })
