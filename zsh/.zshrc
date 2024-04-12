@@ -128,6 +128,7 @@ alias cat="bat"
 alias nv="nvim"
 alias open="xdg-open"
 alias hx="helix"
+alias lg="lazygit"
 
 alias nvrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
