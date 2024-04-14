@@ -28,3 +28,5 @@ append_path "$(go env GOPATH)/bin"
 # Ruby & Ge
 append_path "$(gem env user_gemhome)/bin"
 
+[ -d "$HOME/.local/bin/zig" ] && append_path "$HOME/.local/bin/zig" 
+
