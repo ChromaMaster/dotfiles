@@ -37,6 +37,7 @@
 	uncommit = reset --soft HEAD~1
 	rv = remote -v
 	fixup = !git commit --fixup $(git rev-parse HEAD)
+	yolo = !git commit -m \"$(curl -s https://whatthecommit.com/index.txt)\"
 [push]
 	default = current
 [pull]
