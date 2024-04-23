@@ -223,10 +223,10 @@ function umount_all() {
 # Execute tmux if available
 if which tmux &> /dev/null && [ -z "$TMUX" ]; then
   #tmux attach -t default || tmux new -s default
-  # tmux && exit
+  tmux && exit
 fi
 
 # Execute zellij if available
 if which zellij &> /dev/null && [ -z "$ZELLIJ" ]; then
-  zellij && exit
+  # zellij && exit
 fi
