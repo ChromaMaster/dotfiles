@@ -14,6 +14,12 @@ tmux:
     ln -s $PWD/tmux/tmux.conf ~/.config/tmux/tmux.conf
     ln -s $PWD/tmux/theme.conf ~/.config/tmux/theme.conf
 
+# Install zellij config
+zellij:
+	rm -rf ~/.config/zellij/
+	mkdir ~/.config/zellij
+	ln -s $PWD/zellij/config.kdl ~/.config/zellij/config.kdl
+
 # Install git config (gitignore, config, templates and message)
 git:
     rm -rf ~/.gitignore ~/.gitconfig ~/.git-template ~/.gitmessage
