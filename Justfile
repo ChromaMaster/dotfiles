@@ -33,16 +33,6 @@ starship:
     rm -rf ~/.config/starship.toml
     ln -s $PWD/starship/starship.toml ~/.config
 
-# Install previous neovim config (deprecated)
-neovim:
-    rm -rf ~/.config/nvim
-    ln -s $PWD/neovim ~/.config/nvim
-
-# Install previous kickstart neovim2 configuration (deprecated)
-neovim2:
-    rm -rf ~/.config/nvim
-    ln -s $PWD/neovim2 ~/.config/nvim
-
 # Install neovim config
 nvim:
     rm -rf ~/.config/nvim
