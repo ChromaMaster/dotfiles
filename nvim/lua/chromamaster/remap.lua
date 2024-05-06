@@ -12,6 +12,7 @@ vim.keymap.set("n", "q:", "<nop>")
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>bn", ":bn<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bp<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bq", ":%bd|e#<CR>", { desc = "Close all buffers except the current one" }) -- %bd closes all the buffers, e# opens the last one
 
 -- Do not move cursor when joining lines
 vim.keymap.set("n", "J", "mzJ`z")
