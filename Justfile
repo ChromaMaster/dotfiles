@@ -3,7 +3,7 @@ all: zsh tmux git starship nvim kitty helix
 # Install zsh config
 zsh:
     rm -rf ~/.zshrc ~/.zprofile ~/.profile
-    ln -s $PWD/zsh/.zshrc ~/
+    ln -s $PWD/zsh/.zshrc-zinit ~/.zshrc
     ln -s $PWD/zsh/.zprofile ~/
     ln -s $PWD/zsh/.profile ~/
 
