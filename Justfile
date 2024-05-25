@@ -1,4 +1,4 @@
-all: zsh tmux git starship nvim kitty helix
+all: zsh tmux git starship nvim kitty helix intellij
 
 # Install zsh config
 zsh:
@@ -43,7 +43,12 @@ kitty:
     rm -rf ~/.config/kitty
     ln -s $PWD/kitty ~/.config
 
-# Install  helix config
+# Install helix config
 helix:
     rm -rf ~/.config/helix
     ln -s $PWD/helix ~/.config
+
+#Install intellij config
+intellij:
+	rm -rf ~/.ideavimrc
+	ln -s $PWD/intellij/.ideavimrc ~/.ideavimrc
