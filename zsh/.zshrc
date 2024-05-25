@@ -1,125 +1,82 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Set zinit home directory
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# Download zinit if not present
+if ! [ -d $ZINIT_HOME ]; then
+	mkdir -p "$(dirname $ZINIT_HOME)"
+	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="arrow"
-ZSH_THEME="lambda"
+# Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# Add oh-my-zsh key-bindings. This basically fixes the Home/End/PageUp/PageDown keybindings
+zinit snippet OMZL::key-bindings.zsh
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab # Replace zsh's default completion selection menu with fzf!
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-eval "$(zoxide init zsh)"
+# Shell integrations
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
-#eval "$(mcfly init zsh)"
-eval "$(atuin init zsh --disable-up-arrow)"
+# eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(fzf --zsh)"
 
-autoload -Uz compinit
-compinit
-
+# Global configurations
 export EDITOR="nvim"
-export GPG_TTY=$(tty)
-export MCFLY_RESULTS_SORT=LAST_RUN
+export GPG_TTY=$(tty) # Needed to sign using pinentry-tty
 
-xhost +si:localuser:$USER &> /dev/null
+# fzf configuration
+# Need to set it like this otherwise the FZF_DEFAULT_OPTS interferes with the fzf-tab plugin
+FZF_DEFAULT_OPTS_CUSTOM='--no-height --no-reverse --border'
+export FZF_CTRL_T_OPTS="
+	$FZF_DEFAULT_OPTS_CUSTOM
+	--preview '([ ! -d {} ] && bat {} || tree -L 1 -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_R_OPTS="
+	$FZF_DEFAULT_OPTS_CUSTOM
+	--preview 'echo {}' --preview-window down:3:hidden:wrap
+	--bind '?:toggle-preview'
+	--bind 'ctrl-y:accept'"
 
-# Alias
+# Load completions
+autoload -Uz compinit && compinit
 
+zinit cdreplay -q
+
+# Completion styling
+zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
+zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
+zstyle ":completion:*" menu no
+zstyle ':fzf-tab:*' fzf-bindings 'enter:accept'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # Preview directories when doing cd
+
+
+# Custom keybindings
+## Use ctrl + y to accept the zsh-autosuggestion
+bindkey "^y" autosuggest-accept
+## This enables to search commands that match the current prefix typed
+bindkey "^p" history-search-backward
+bindkey "^n" history-search-forward
+
+# History configuration
+HISTSIZE=10000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase # Do not allow duplicates in the history
+## Entire documentation here: https://zsh.sourceforge.io/Doc/Release/Options.html
+setopt append_history # append to the history file rather than replace it
+setopt share_history # share historyfile across multiple shells
+setopt hist_ignore_space # ignore space prefixed commands
+setopt hist_ignore_dups # do not enter command lines into the history list if they are duplicates of the previous event
+setopt hist_ignore_all_dups # if a new command line being added to the history list duplicates an older one, the older command is removed from the list
+setopt hist_save_no_dups # when writing out the history file, older commands that duplicate newer ones are omitted 
+setopt hist_find_no_dups # when searching for history entries in the line editor, do not display duplicates of a line previously found
+
+# Aliases
 ## Command replacement
 alias vim="nvim"
 alias cat="bat"
@@ -133,13 +90,13 @@ alias lg="lazygit"
 alias nvrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 
-alias lsl="ls -l"
+## Default flags
+alias ls="ls --color"
 
-# Docker
+## Docker
 alias docker_rm_all='docker rm $(docker ps --filter status=exited -q)'
 
 ## Distro specific
-
 DISTRO=$(cat /etc/os-release | grep -e '^ID=' | cut -d '=' -f 2)
 
 ## Distro specific
@@ -158,14 +115,31 @@ case "$DISTRO" in
         ;;
 esac
 
-# Auxiliar functions
-
+# Helpful functions
 function untilSucceeds() {
     while true; do $@ && break; sleep 0.5; done
 }
 
 function untilFails() {
     while true; do $@ || break; sleep 0.5; done
+}
+
+function fdiff(){
+	if [ "$#" -ne 2 ]; then
+            echo "ERROR: Usage $0 <file1> <file2>"
+	        return
+	fi
+
+	diff -u $1 $2 | diff-so-fancy | less -R
+}
+
+function umount_all() {
+	if [ "$#" -ne 1 ]; then
+		echo "ERROR: Usage $0 <disk> (example $0 sda)"
+		return
+	fi
+
+	sudo umount $(lsblk --list | grep $1 | grep part | gawk '{ print $7 }' | tr '\n' ' ')
 }
 
 function gitsetremotes(){
@@ -192,41 +166,9 @@ function gitsetremotes(){
     git remote set-url --add --push origin $2
 }
 
-
-function fdiff(){
-	if [ "$#" -ne 2 ]; then
-            echo "ERROR: Usage $0 <file1> <file2>"
-	        return
-	fi
-
-	diff -u $1 $2 | diff-so-fancy | less -R
-}
-
-# Calculate sha512sum and md5sum of all the bin files in the current directory
-function binsha512sum() {
-	find . -iname "*.bin" -type f -exec sh -c 'f={}; sha512sum $f > $f.sha512sum' \;
-}
-
-function binmd5sum() {
-	find . -iname "*.bin" -type f -exec sh -c 'f={}; md5sum $f > $f.md5sum' \;
-}
-
-function umount_all() {
-	if [ "$#" -ne 1 ]; then
-		echo "ERROR: Usage $0 <disk> (example $0 sda)"
-		return
-	fi
-
-	sudo umount $(lsblk --list | grep $1 | grep part | gawk '{ print $7 }' | tr '\n' ' ')
-}
-
 # Execute tmux if available
 if which tmux &> /dev/null && [ -z "$TMUX" ]; then
   #tmux attach -t default || tmux new -s default
   tmux && exit
 fi
 
-# Execute zellij if available
-if which zellij &> /dev/null && [ -z "$ZELLIJ" ]; then
-  # zellij && exit
-fi
