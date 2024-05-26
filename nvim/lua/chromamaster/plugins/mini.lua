@@ -17,6 +17,12 @@ return {
 		-- - sr)'  - [S]urround [R]eplace [)] [']
 		require("mini.surround").setup()
 
+		-- Move any selection in any direction
+		--
+		-- M-h - Move Left
+		-- M-j - Move Down
+		-- M-k - Move Up
+		-- M-l - Move Right
 		require("mini.move").setup()
 
 		-- Simple and easy statusline.
