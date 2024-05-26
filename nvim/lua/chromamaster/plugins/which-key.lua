@@ -12,6 +12,7 @@ return { -- Useful plugin to show you pending keybinds.
 			["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
 			["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
 			["<leader>b"] = { name = "[B]uffer", _ = "which_key_ignore" },
+			["<leader>t"] = { name = "[T]rouble diagnostics", _ = "which_key_ignore" },
 		})
 	end,
 }
