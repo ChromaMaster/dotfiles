@@ -68,3 +68,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+-- Copyes the selected text into the "h" register and open a sed command with the contents: %s/<reg-h>//g
+vim.keymap.set("v", "<leader>s", '"hy:%s/<C-r>h//g<left><left>', { desc = "Replace current highlighted text" })
