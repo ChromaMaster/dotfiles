@@ -1,5 +1,32 @@
-:set relativenumber
-:set number
+" set <leader> to <space>
+let mapleader = " "
 
-:set clipboard="unnamedplus"
-:set commentary
+set number                        " line numbers
+set relativenumber
+set hlsearch                      " highlight search occurrences
+set ignorecase                    " ignore case in search patterns
+set smartcase                     " no ignore case when pattern is uppercase
+set incsearch                     " show search results while typing
+
+set clipboard+=unnamedplus
+set commentary
+
+imap <C-y> <Action>(EditorChooseLookupItemReplace)
+
+nmap <leader>sf <Action>(GotoFile)
+nmap <leader>sg <Action>(FindInPath)
+nmap <leader>sw <Action>(Switcher)
+
+" Open and focus project view
+nmap \\ <Action>(ActivateProjectToolWindow)
+
+" Open action popup
+nmap <leader>? <Action>(GotoAction)
+
+nmap gD <Action>(GotoDeclaration)
+nmap gr <Action>(ShowUsages)
+nmap gI <Action>(GotoImplementation)
+
+nmap <leader>ca <Action>(ShowIntentionActions)
+
+nmap <leader>rn <Action>(RenameElement)
