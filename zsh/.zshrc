@@ -54,8 +54,8 @@ zinit cdreplay -q
 zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
 zstyle ":completion:*" menu no
-zstyle ':fzf-tab:*' fzf-bindings 'enter:accept'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # Preview directories when doing cd
+zstyle ":fzf-tab:*" fzf-bindings "enter:accept"
+zstyle ":fzf-tab:complete:*" fzf-preview 'eza --icons --color $realpath' # Preview directories when doing cd
 
 
 # Custom keybindings
@@ -94,7 +94,8 @@ alias nvrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
 
 ## Default flags
-alias ls="ls --color"
+alias ls="eza --color --icons --git"
+alias tree="eza -T"
 
 ## Docker
 alias docker_rm_all='docker rm $(docker ps --filter status=exited -q)'
