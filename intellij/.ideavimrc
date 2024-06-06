@@ -3,19 +3,37 @@ let mapleader = " "
 
 set number                        " line numbers
 set relativenumber
-set hlsearch                      " highlight search occurrences
+set nohlsearch                    " do not highlight search occurrences
 set ignorecase                    " ignore case in search patterns
 set smartcase                     " no ignore case when pattern is uppercase
 set incsearch                     " show search results while typing
 
 set clipboard+=unnamedplus
+
+" Plugins
+"" Commentary
 set commentary
+"" Which Key
+set which-key
+set notimeout
+
+let g:WhichKeyDesc_recent_files         = "<leader><leader>  Open Recent Files"
+let g:WhichKeyDesc_search               = "<leader>s  [S]earch"
+let g:WhichKeyDesc_goto_files           = "<leader>sf  [S]earch [F]iles"
+let g:WhichKeyDesc_find_in_path         = "<leader>sg  [S]earch [G]rep"
+
+let g:WhichKeyDesc_code_keybinding      = "<leader>c  [C]ode options"
+let g:WhichKeyDesc_show_code_actions    = "<leader>ca  [C]ode [A]ction"
+let g:WhichKeyDesc_show_hover_info      = "<leader>ci  [C]ode [I]nfo"
+
+let g:WhichKeyDesc_refactor             = "<leader>r  [R]efactor"
+let g:WhichKeyDesc_refactor_name        = "<leader>rn  [R]efactor [N]ame"
 
 imap <C-y> <Action>(EditorChooseLookupItemReplace)
 
+nmap <leader><leader> <Action>(Switcher)
 nmap <leader>sf <Action>(GotoFile)
 nmap <leader>sg <Action>(FindInPath)
-nmap <leader>sw <Action>(Switcher)
 
 " Open and focus project view
 nmap \\ <Action>(ActivateProjectToolWindow)
@@ -28,5 +46,6 @@ nmap gr <Action>(ShowUsages)
 nmap gI <Action>(GotoImplementation)
 
 nmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>ci <Action>(ShowHoverInfo)
 
 nmap <leader>rn <Action>(RenameElement)
