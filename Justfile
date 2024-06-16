@@ -1,3 +1,8 @@
+# Lists all the possible recipes
+default:
+    @just --list
+
+# Install all configurations
 all: zsh tmux git starship nvim kitty helix intellij
 
 # Install zsh config
@@ -52,3 +57,6 @@ helix:
 intellij:
 	rm -rf ~/.ideavimrc
 	ln -s $PWD/intellij/.ideavimrc ~/.ideavimrc
+
+# Include nix module
+mod nix
