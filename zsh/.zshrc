@@ -113,6 +113,8 @@ case "$DISTRO" in
         "arch")
                 alias pacman="yay"
                 alias pacman_autoremove="pacman -Qqdt | pacman -Rsu -"
+		;;
+		"nixos")	
         ;;
         *)
                 echo "Distro $DISTRO not supported"
