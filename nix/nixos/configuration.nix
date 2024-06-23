@@ -140,6 +140,7 @@
     bat
     diff-so-fancy
 	pre-commit
+	gh
 
     # Programming languages
     go
