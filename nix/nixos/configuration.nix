@@ -104,9 +104,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Nix
-	nix-index
+    nix-index
 
-	## Formatter
+    ## Formatter
     alejandra
 
     # Basics
@@ -123,13 +123,13 @@
     gnumake
     gcc
     cmake
-	ninja
-	pkg-config
-	
+    ninja
+    pkg-config
+
     neovim
     tmux
     just
-	meson
+    meson
 
     # Shell tools
     starship
@@ -139,8 +139,10 @@
     eza
     bat
     diff-so-fancy
-	pre-commit
-	gh
+    pre-commit
+    gh
+    fd
+    ripgrep
 
     # Programming languages
     go
@@ -173,6 +175,9 @@
         {
           lockAll = true;
           settings = {
+            "org/gnome/settings-daemon/plugins/power" = {
+              power-button-action = "nothing";
+            };
             "org/gnome/desktop/peripherals/touchpad" = {
               natural-scroll = false;
               two-finger-scrolling-enabled = true;
@@ -182,9 +187,9 @@
               num-workspaces = "4";
             };
 
-			"org/gnome/mutter" = {
-				workspaces-only-on-primary=true;
-			};
+            "org/gnome/mutter" = {
+              workspaces-only-on-primary = true;
+            };
 
             "org/gnome/shell/keybindings" = {
               switch-to-application-1 = ["disabled"];
