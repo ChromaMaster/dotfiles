@@ -160,6 +160,9 @@ return { -- LSP Configuration & Plugins
 
 			-- C/C++
 			clangd = {},
+
+			-- Zig
+			zls = {},
 		}
 
 		-- Ensure the servers and tools above are installed
