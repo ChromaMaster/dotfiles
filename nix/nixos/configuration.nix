@@ -177,7 +177,12 @@
           settings = {
             "org/gnome/settings-daemon/plugins/power" = {
               power-button-action = "nothing";
+              power-saver-profile-on-low-battery = false;
+              sleep-inactive-ac-type = "nothing";
+              sleep-inactive-battery-timeout = "1800";
+              sleep-inactive-battery-type = "suspend";
             };
+
             "org/gnome/desktop/peripherals/touchpad" = {
               natural-scroll = false;
               two-finger-scrolling-enabled = true;
@@ -185,6 +190,10 @@
 
             "org/gnome/desktop/wm/preferences" = {
               num-workspaces = "4";
+            };
+
+            "org/gnome/desktop/interface" = {
+              how-battery-percentage = true;
             };
 
             "org/gnome/mutter" = {
