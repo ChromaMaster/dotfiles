@@ -165,6 +165,17 @@ return { -- LSP Configuration & Plugins
 			zls = {},
 		}
 
+		-- For now, in nixos the lsp servers need to be installed manually due to the FHS issues nix has
+		-- https://www.reddit.com/r/NixOS/comments/13uc87h/masonnvim_broke_on_nixos/
+		local distro = vim.fn.system("cat /etc/os-release | grep ^ID= | cut -d= -f2 | tr -d '\n'")
+		if distro == "nixos" then
+			for server_name, opts in pairs(servers) do
+				require("lspconfig")[server_name].setup(opts)
+			end
+
+			return
+		end
+
 		-- Ensure the servers and tools above are installed
 		--  To check the current status of installed tools and/or manually install
 		--  other tools, you can run
