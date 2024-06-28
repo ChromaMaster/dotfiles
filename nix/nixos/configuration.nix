@@ -117,6 +117,7 @@
     unzip
     telegram-desktop
     (nerdfonts.override {fonts = ["DejaVuSansMono" "DroidSansMono"];})
+    jetbrains.clion
 
     # Build essentials
     binutils
@@ -126,7 +127,6 @@
     ninja
     pkg-config
 
-    neovim
     tmux
     just
     meson
@@ -153,6 +153,16 @@
     nodejs
     ruby
 
+    # LSP Servers
+    clang-tools # c/c++
+    zls # zig
+    cmake-language-server # cmake
+    bash-language-server # bash
+    pyright # python
+    rust-analyzer # rust
+    gopls # go
+    lua-language-server # Lua
+
     # Gnome dependencies
     # gnome.dconf-editor
     gnome.gnome-tweaks
@@ -167,6 +177,9 @@
       };
     };
     zsh = {
+      enable = true;
+    };
+    neovim = {
       enable = true;
     };
     dconf = {
