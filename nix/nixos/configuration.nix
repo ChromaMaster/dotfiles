@@ -118,6 +118,7 @@
     telegram-desktop
     (nerdfonts.override {fonts = ["DejaVuSansMono" "DroidSansMono"];})
     jetbrains.clion
+    xclip
 
     # Build essentials
     binutils
