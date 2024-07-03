@@ -51,7 +51,13 @@ export FZF_CTRL_R_OPTS="
 	--bind 'ctrl-y:accept'"
 
 # Load completions
-autoload -Uz compinit && compinit
+## If the .zcompdump file has been modified more than 24h ago, regenerate the completions.
+## Otherwise use the cached
+autoload -Uz compinit
+if [ "$(find ~/.zcompdump -mtime +1)" ] ; then
+    compinit
+fi
+compinit -C
 
 zinit cdreplay -q
 
