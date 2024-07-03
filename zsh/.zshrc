@@ -7,6 +7,10 @@ if ! [ -d $ZINIT_HOME ]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zmodload zsh/zprof
+fi
+
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
@@ -177,5 +181,9 @@ function gitsetremotes(){
 if which tmux &> /dev/null && [ -z "$TMUX" ]; then
   #tmux attach -t default || tmux new -s default
   tmux && exit
+fi
+
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zprof
 fi
 
