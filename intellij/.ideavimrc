@@ -29,11 +29,16 @@ let g:WhichKeyDesc_show_hover_info      = "<leader>ci  [C]ode [I]nfo"
 let g:WhichKeyDesc_refactor             = "<leader>r  [R]efactor"
 let g:WhichKeyDesc_refactor_name        = "<leader>rn  [R]efactor [N]ame"
 
+let g:WhichKeyDesc_buffer               = "<leader>b  [B]uffer"
+let g:WhichKeyDesc_buffer_close         = "<leader>bq  [B]uffer [Q]uit all"
+
 imap <C-y> <Action>(EditorChooseLookupItemReplace)
 
 nmap <leader><leader> <Action>(Switcher)
 nmap <leader>sf <Action>(GotoFile)
 nmap <leader>sg <Action>(FindInPath)
+
+nmap <leader>bq <Action>(CloseAllEditors)
 
 " Open and focus project view
 nmap \\ <Action>(ActivateProjectToolWindow)
