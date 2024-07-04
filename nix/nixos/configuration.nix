@@ -144,6 +144,7 @@
     gh
     fd
     ripgrep
+    lazygit
 
     # Programming languages
     go
@@ -167,9 +168,9 @@
     # Gnome dependencies
     # gnome.dconf-editor
     gnome.gnome-tweaks
+    gnomeExtensions.appindicator
   ];
 
-  #gnome config
   programs = {
     gnupg = {
       agent = with pkgs; {
@@ -183,6 +184,7 @@
     neovim = {
       enable = true;
     };
+    #gnome config
     dconf = {
       enable = true;
       profiles.user.databases = [
@@ -212,6 +214,10 @@
 
             "org/gnome/mutter" = {
               workspaces-only-on-primary = true;
+            };
+
+            "org/gnome/shell" = {
+              enabled-extensions = ["appindicatorsupport@rgcjonas.gmail.com"];
             };
 
             "org/gnome/shell/keybindings" = {
