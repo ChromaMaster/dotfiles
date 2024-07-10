@@ -119,6 +119,7 @@
     (nerdfonts.override {fonts = ["DejaVuSansMono" "DroidSansMono"];})
     jetbrains.clion
     xclip
+    killall
 
     # Build essentials
     binutils
@@ -128,7 +129,6 @@
     ninja
     pkg-config
 
-    tmux
     just
     meson
 
@@ -145,6 +145,7 @@
     fd
     ripgrep
     lazygit
+    tldr
 
     # Programming languages
     go
@@ -165,6 +166,11 @@
     gopls # go
     lua-language-server # Lua
 
+    # Formatters
+    stylua
+    xmlformat
+    nodePackages.prettier
+
     # Gnome dependencies
     # gnome.dconf-editor
     gnome.gnome-tweaks
@@ -179,6 +185,9 @@
       };
     };
     zsh = {
+      enable = true;
+    };
+    tmux = {
       enable = true;
     };
     neovim = {
