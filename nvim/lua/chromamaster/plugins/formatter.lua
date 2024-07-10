@@ -21,6 +21,7 @@ local confort = {
 				yaml = { "prettier" },
 				markdown = { "prettier" },
 				xml = { "xmlformat" },
+				nix = { "alejandra" },
 			},
 		})
 

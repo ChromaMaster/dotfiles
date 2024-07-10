@@ -38,6 +38,10 @@ return { -- LSP Configuration & Plugins
 				--  To jump back, press <C-T>.
 				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
+				-- WARN: This is not Goto Definition, this is Goto Declaration.
+				--  For example, in C this would take you to the header
+				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
 				-- Find references for the word under your cursor.
 				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
@@ -66,13 +70,11 @@ return { -- LSP Configuration & Plugins
 				-- or a suggestion from your LSP for this to activate.
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
+				map("<leader>ci", vim.lsp.buf.hover, "[C]ode [I]nformation")
+
 				-- Opens a popup that displays documentation about the word under your cursor
 				--  See `:help K` for why this keymap
 				map("K", vim.lsp.buf.hover, "Hover Documentation")
-
-				-- WARN: This is not Goto Definition, this is Goto Declaration.
-				--  For example, in C this would take you to the header
-				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
