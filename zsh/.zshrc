@@ -59,6 +59,11 @@ if [ "$(find ~/.zcompdump -mtime +1)" ] ; then
 fi
 compinit -C
 
+# Define what is a word
+## (b)ash:       Word characters are alphanumerics only
+autoload -Uz select-word-style
+select-word-style bash
+
 zinit cdreplay -q
 
 # Completion styling
