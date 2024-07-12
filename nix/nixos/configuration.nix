@@ -105,9 +105,9 @@
     # Waiting on this to be in the upsteam: https://github.com/tmux/tmux/pull/3958
     (final: prev: {
       tmux = prev.tmux.overrideAttrs (old: {
-        src = prev.fetchFromGitHub {
-          owner = "tmux";
-          repo = "tmux";
+        src = final.fetchFromGitHub {
+          owner = old.src.owner;
+          repo = old.src.repo;
           rev = "5039be657c4263f2539a149199cbc8d6780df1c3";
           hash = "sha256-oH8TTifPSim0b6FJNss6H7IOODjzsj9vBIndT0quvuo=";
         };
