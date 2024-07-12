@@ -113,6 +113,9 @@
     vim
     git
     kitty
+    wget
+    curl
+    file
     zip
     unzip
     telegram-desktop
