@@ -22,6 +22,7 @@ local confort = {
 				markdown = { "prettier" },
 				xml = { "xmlformat" },
 				nix = { "alejandra" },
+				bash = { "shfmt" },
 			},
 		})
 
