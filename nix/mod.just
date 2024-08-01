@@ -9,7 +9,14 @@ format:
 # Switch to current configuration
 switch:
 	sudo nixos-rebuild switch --show-trace --flake $PWD#default
+
+build:	
+	sudo nixos-rebuild dry-build --show-trace --flake $PWD#default
 	
 # Upgrade & switch to current configuration
-upgrade:
-	sudo nixos-rebuild switch --upgrade --show-trace --flake $PWD#default
+upgrade: && switch
+	sudo nix flake update
+
+# Remove old builds of nix
+collect-garbage:
+	sudo nix-collect-garbage --delete-old

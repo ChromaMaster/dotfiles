@@ -150,6 +150,8 @@
 
     just
     meson
+    docker
+    podman
 
     # Shell tools
     starship
@@ -192,7 +194,7 @@
 
     # Gnome dependencies
     # gnome.dconf-editor
-    gnome.gnome-tweaks
+    gnome-tweaks
     gnomeExtensions.appindicator
   ];
 
