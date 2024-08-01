@@ -191,7 +191,7 @@ function gitsetremotes(){
 # Execute tmux if available
 if which tmux &> /dev/null && [ -z "$TMUX" ]; then
   #tmux attach -t default || tmux new -s default
-  tmux && exit
+  exec tmux
 fi
 
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
