@@ -16,6 +16,8 @@ set commentary
 "" Which Key
 set which-key
 set notimeout
+"" highlightedyank
+set highlightedyank
 
 let g:WhichKeyDesc_recent_files         = "<leader><leader>  Open Recent Files"
 let g:WhichKeyDesc_search               = "<leader>s  [S]earch"
