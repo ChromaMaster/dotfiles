@@ -108,8 +108,8 @@
         src = final.fetchFromGitHub {
           owner = old.src.owner;
           repo = old.src.repo;
-          rev = "5039be657c4263f2539a149199cbc8d6780df1c3";
-          hash = "sha256-oH8TTifPSim0b6FJNss6H7IOODjzsj9vBIndT0quvuo=";
+          rev = "34807388b064ed922293f128324b7d5d96f0c84d";
+          hash = "sha256-zG3oRaahQCOVGTWfWwhDff5/iNbbWbxwIX/clK3vEPM=";
         };
         patches = [];
       });
