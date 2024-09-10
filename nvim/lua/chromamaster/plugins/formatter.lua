@@ -1,6 +1,6 @@
 -- Lightweight yet powerful formatter plugin for Neovim
 
-local confort = {
+return {
 	"stevearc/conform.nvim",
 	config = function()
 		require("conform").setup({
@@ -35,5 +35,3 @@ local confort = {
 		end, { desc = "[C]ode [F]ormat" })
 	end,
 }
-
-return confort
