@@ -164,15 +164,20 @@ function umount_all() {
 	sudo umount $(lsblk --list | grep $1 | grep part | gawk '{ print $7 }' | tr '\n' ' ')
 }
 
-function gitsetremotes(){
+function git-set-remotes(){
+	if [ $1 = "help" ]; then
+		echo "Usage: $0 <srht-remote> <github-remote>"
+		return 0
+	fi
+
     if [ -z "$(git rev-parse --is-inside-work-tree 2> /dev/null)" ]; then
         echo "ERROR: Not inside git repository"
-        exit 1
+        return 1 
     fi
  
     if [ $# -lt 2 ]; then
         echo "ERROR: Need 4 arguments: <srht ulr> <gh url>"
-        exit 1
+        return 1
     fi
  
     for remote in $(git remote show); do
