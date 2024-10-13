@@ -3,7 +3,7 @@ default:
     @just --list
 
 # Install all configurations
-all: zsh tmux git starship nvim kitty helix intellij
+all: zsh tmux git starship nvim kitty helix intellij zed
 
 # Install zsh config
 zsh:
@@ -57,6 +57,11 @@ helix:
 intellij:
 	rm -rf ~/.ideavimrc
 	ln -s $PWD/intellij/.ideavimrc ~/.ideavimrc
+
+#Install zed config
+zed:
+	rm -rf ~/.config/zed/settings.json
+	ln -s $PWD/zed/settings.json ~/.config/zed/settings.json
 
 # Include nix module
 mod nix
