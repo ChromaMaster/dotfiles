@@ -96,6 +96,9 @@ setopt hist_save_no_dups # when writing out the history file, older commands tha
 setopt hist_find_no_dups # when searching for history entries in the line editor, do not display duplicates of a line previously found
 
 # Aliases
+## Removed aliases
+unalias zi # zinit alias colides with zoxide
+
 ## Command replacement
 alias vim="nvim"
 alias cat="bat"
