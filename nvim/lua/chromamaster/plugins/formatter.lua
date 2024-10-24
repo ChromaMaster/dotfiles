@@ -23,6 +23,7 @@ return {
 				xml = { "xmlformat" },
 				nix = { "alejandra" },
 				bash = { "shfmt" },
+				python = { "isort", "black" },
 			},
 		})
 
