@@ -5,13 +5,15 @@ $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
-$package\
 $direnv\
 $cmd_duration\
 $sudo\
+$nix_shell\
+$python\
 $line_break\
 $battery\
-$character"""
+$character
+"""
 
 [character]
 format = '$symbol '
@@ -22,3 +24,14 @@ disabled = false
 
 [sudo]
 disabled = false
+
+[nix_shell]
+disabled = false
+symbol = '❄️ '
+format = 'via [$symbol(\($name\))](bold blue) '
+
+[python]
+disabled = false
+version_format = 'v$major.$minor'
+format = 'via [$symbol$version (\($virtualenv\))]($style)'
+
