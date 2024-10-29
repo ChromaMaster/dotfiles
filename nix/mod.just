@@ -7,14 +7,14 @@ format:
 	find . -type f -iname "*.nix" -exec alejandra {} \;
 
 # Switch to current configuration
-switch:
-	sudo nixos-rebuild switch --show-trace --flake $PWD#default
+switch target="default":
+	sudo nixos-rebuild switch --show-trace --flake $PWD#{{target}}
 
 build:	
 	sudo nixos-rebuild dry-build --show-trace --flake $PWD#default
 	
 # Upgrade & switch to current configuration
-upgrade: && switch
+upgrade target="default": && (switch target)
 	sudo nix flake update
 
 # Remove old builds of nix

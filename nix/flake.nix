@@ -21,7 +21,12 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./nixos/configuration.nix
-          # inputs.home-manager.nixosModules.default
+        ];
+      };
+      work = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./nixos/work-configuration.nix
         ];
       };
     };
