@@ -6,38 +6,11 @@
   pkgs,
   ...
 }: {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Bootloader.
-
-  boot = {
-    supportedFilesystems = ["ntfs"];
-    loader = {
-      efi.canTouchEfiVariables = true;
-      systemd-boot.enable = false;
-      grub = {
-        enable = true;
-        device = "nodev";
-        useOSProber = true;
-        efiSupport = true;
-        extraEntries = ''
-          menuentry "Windows" {
-            insmod part_gpt
-            insmod fat
-            insmod search_fs_uuid
-            insmod chain
-            search --fs-uuid --set=root 00001DD8-97CC-417E-9BE5-173F2199B394
-            chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-          }
-        '';
-      };
-    };
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -53,18 +26,28 @@
   time.timeZone = "Europe/Madrid";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "es_ES.UTF-8";
-    LC_IDENTIFICATION = "es_ES.UTF-8";
-    LC_MEASUREMENT = "es_ES.UTF-8";
-    LC_MONETARY = "es_ES.UTF-8";
-    LC_NAME = "es_ES.UTF-8";
-    LC_NUMERIC = "es_ES.UTF-8";
-    LC_PAPER = "es_ES.UTF-8";
-    LC_TELEPHONE = "es_ES.UTF-8";
-    LC_TIME = "es_ES.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "es_ES.UTF-8";
+      LC_IDENTIFICATION = "es_ES.UTF-8";
+      LC_MEASUREMENT = "es_ES.UTF-8";
+      LC_MONETARY = "es_ES.UTF-8";
+      LC_NAME = "es_ES.UTF-8";
+      LC_NUMERIC = "es_ES.UTF-8";
+      LC_PAPER = "es_ES.UTF-8";
+      LC_TELEPHONE = "es_ES.UTF-8";
+      LC_TIME = "es_ES.UTF-8";
+    };
+    # Japanese
+    inputMethod = {
+      type = "fcitx5";
+      enable = true;
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
   };
 
   # Enable the X11 windowing system.
@@ -73,6 +56,8 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  services.fwupd.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -109,7 +94,7 @@
   users.users.vlad = {
     isNormalUser = true;
     description = "Vlad";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       #  thunderbird
     ];
@@ -174,8 +159,11 @@
     telegram-desktop
     (nerdfonts.override {fonts = ["DejaVuSansMono" "DroidSansMono"];})
     jetbrains.clion
+    jetbrains.pycharm-community
     xclip
     killall
+    zed-editor
+    vscode
 
     # Build essentials
     binutils
@@ -187,6 +175,7 @@
 
     just
     meson
+    poetry
 
     # Shell tools
     starship
@@ -202,6 +191,8 @@
     ripgrep
     lazygit
     tldr
+    jq
+    yq
 
     # Programming languages
     go
@@ -218,6 +209,7 @@
     cmake-language-server # cmake
     bash-language-server # bash
     pyright # python
+    ruff # python
     rust-analyzer # rust
     gopls # go
     lua-language-server # Lua
@@ -228,7 +220,6 @@
     nodePackages.prettier
 
     # Gnome dependencies
-    # gnome.dconf-editor
     gnome-tweaks
     gnomeExtensions.appindicator
   ];
@@ -240,15 +231,19 @@
         pinentryPackage = pinentry-curses;
       };
     };
+
     zsh = {
       enable = true;
     };
+
     tmux = {
       enable = true;
     };
+
     neovim = {
       enable = true;
     };
+
     #gnome config
     dconf = {
       enable = true;
@@ -264,6 +259,14 @@
               sleep-inactive-battery-type = "suspend";
             };
 
+            "org/gnome/desktop/screensaver" = {
+              lock-enabled = false;
+            };
+
+            "org/gnome/desktop/session" = {
+              idle-delay = "900";
+            };
+
             "org/gnome/desktop/peripherals/touchpad" = {
               natural-scroll = false;
               two-finger-scrolling-enabled = true;
@@ -274,7 +277,8 @@
             };
 
             "org/gnome/desktop/interface" = {
-              how-battery-percentage = true;
+              color-scheme = "prefer-dark";
+              show-battery-percentage = true;
             };
 
             "org/gnome/mutter" = {
@@ -282,7 +286,16 @@
             };
 
             "org/gnome/shell" = {
-              enabled-extensions = ["appindicatorsupport@rgcjonas.gmail.com"];
+              disable-user-extensions = false;
+              enabled-extensions = [
+                pkgs.gnomeExtensions.appindicator.extensionUuid
+                pkgs.gnomeExtensions.user-themes.extensionUuid
+                pkgs.gnomeExtensions.removable-drive-menu.extensionUuid
+              ];
+            };
+
+            "org/gnome/shell/extensions/user-theme" = {
+              # name = "Arc";
             };
 
             "org/gnome/shell/keybindings" = {

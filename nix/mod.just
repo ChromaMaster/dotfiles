@@ -10,8 +10,8 @@ format:
 switch target="default":
 	sudo nixos-rebuild switch --show-trace --flake $PWD#{{target}}
 
-build:	
-	sudo nixos-rebuild dry-build --show-trace --flake $PWD#default
+build target="default":	
+	sudo nixos-rebuild dry-build --show-trace --flake $PWD#{{target}}
 	
 # Upgrade & switch to current configuration
 upgrade target="default": && (switch target)

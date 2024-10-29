@@ -3,42 +3,32 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
     self,
     nixpkgs,
-    home-manager,
     ...
-  } @ inputs: {
-    nixosConfigurations = {
-      default = nixpkgs.lib.nixosSystem {
+  } @ inputs: let
+    mkHost = hostname: system:
+      nixpkgs.lib.nixosSystem {
+        system = system;
         specialArgs = {inherit inputs;};
         modules = [
+          # Configuration shared by all hosts
           ./nixos/configuration.nix
+
+          # Host specific configuration
+          ./nixos/hosts/${hostname}/configuration.nix
+
+          # Host specific hardware configuration
+          ./nixos/hosts/${hostname}/hardware-configuration.nix
         ];
       };
-      work = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./nixos/work-configuration.nix
-        ];
-      };
-    };
-    homeConfigurations = {
-      user = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          # ./home
-        ];
-      };
+  in {
+    nixosConfigurations = {
+      default = mkHost "personal" "x86_64-linux";
+      work = mkHost "work" "x86_64-linux";
     };
   };
 }
