@@ -60,8 +60,10 @@ intellij:
 
 #Install zed config
 zed:
-	rm -rf ~/.config/zed/settings.json
+	rm -rf ~/.config/zed/settings.json ~/.config/zed/keymap.json
 	ln -s $PWD/zed/settings.json ~/.config/zed/settings.json
+	ln -s $PWD/zed/keymap.json ~/.config/zed/keymap.json
+
 
 # Include nix module
 mod nix

@@ -1,0 +1,61 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      // Allow to move between context menu items with (n)ext and (p)revious shortcuts
+      "ctrl-n": "editor::ContextMenuNext",
+      "ctrl-p": "editor::ContextMenuPrev",
+      "ctrl-y": "editor::ConfirmCompletion"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "\\": "project_panel::ToggleFocus",
+      "~": "terminal_panel::ToggleFocus",
+
+      // Toggle Left Dock (project panel) or Bottom Dock (terminal)
+      "space q h": "workspace::ToggleLeftDock",
+      "space q j": "workspace::ToggleBottomDock",
+
+      "space r n": "editor::Rename",
+
+      "space c a": "editor::ToggleCodeActions",
+
+      // Move between tabs
+      "ctrl-a h": "pane::ActivatePrevItem",
+      "ctrl-a l": "pane::ActivateNextItem"
+    }
+  },
+  {
+    "context": "Dock || (Editor && vim_mode == normal)",
+    "bindings": {
+      // Move between panes
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+
+      "space s f": "file_finder::Toggle",
+      "space s g": "workspace::NewSearch",
+
+      // Quick switch between active panes
+      "space space": "tab_switcher::Toggle"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      // Close the project panel with q
+      "q": "workspace::ToggleLeftDock"
+    }
+  }
+]

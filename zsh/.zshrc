@@ -113,6 +113,7 @@ alias nv="nvim"
 alias open="xdg-open"
 alias hx="helix"
 alias lg="lazygit"
+alias zed="zeditor"
 
 alias nvrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
