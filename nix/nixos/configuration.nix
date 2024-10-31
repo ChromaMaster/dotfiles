@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -255,7 +256,7 @@
               power-button-action = "nothing";
               power-saver-profile-on-low-battery = false;
               sleep-inactive-ac-type = "nothing";
-              sleep-inactive-battery-timeout = "1800";
+              sleep-inactive-battery-timeout = lib.gvariant.mkInt32 7200;
               sleep-inactive-battery-type = "suspend";
             };
 
@@ -264,7 +265,7 @@
             };
 
             "org/gnome/desktop/session" = {
-              idle-delay = "900";
+              idle-delay = lib.gvariant.mkUint32 0;
             };
 
             "org/gnome/desktop/peripherals/touchpad" = {
