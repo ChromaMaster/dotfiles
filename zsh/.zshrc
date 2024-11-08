@@ -34,6 +34,8 @@ eval "$(fzf --zsh)"
 export EDITOR="nvim"
 export GPG_TTY=$(tty) # Needed to sign using pinentry-tty
 export JUST_UNSTABLE=1
+export DIRENV_WARN_TIMEOUT=0 # Disable timeout warning (useful when using nix flakes)
+
 
 ## Needed for japanese input
 export XMODIFIERS DEFAULT=@im=fcitx
