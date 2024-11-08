@@ -39,6 +39,7 @@
 	fixup = !git commit --fixup $(git rev-parse HEAD)
 	yolo = !git commit -m \"$(curl -s https://whatthecommit.com/index.txt)\"
 	patch = !git diff --patch-with-stat \"$@\" > 0001-unstaged.patch
+	patchs = !git diff --staged --patch-with-stat \"$@\" > 0001-staged.patch
 [push]
 	default = current
 [pull]
