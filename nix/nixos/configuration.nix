@@ -156,6 +156,7 @@
     curl
     file
     zip
+    htop
     unzip
     telegram-desktop
     (nerdfonts.override {fonts = ["DejaVuSansMono" "DroidSansMono"];})
