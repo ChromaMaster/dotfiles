@@ -89,7 +89,7 @@ bindkey "^p" history-search-backward
 bindkey "^n" history-search-forward
 
 # History configuration
-HISTSIZE=10000
+HISTSIZE=50000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase # Do not allow duplicates in the history
