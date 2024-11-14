@@ -224,6 +224,7 @@
     # Gnome dependencies
     gnome-tweaks
     gnomeExtensions.appindicator
+    gnomeExtensions.advanced-alttab-window-switcher
   ];
 
   programs = {
@@ -293,11 +294,17 @@
                 pkgs.gnomeExtensions.appindicator.extensionUuid
                 pkgs.gnomeExtensions.user-themes.extensionUuid
                 pkgs.gnomeExtensions.removable-drive-menu.extensionUuid
+                pkgs.gnomeExtensions.advanced-alttab-window-switcher.extensionUuid
               ];
             };
 
             "org/gnome/shell/extensions/user-theme" = {
               # name = "Arc";
+            };
+
+            "org/gnome/shell/extensions/advanced-alt-tab-window-switcher" = {
+              switcher-popup-monitor = lib.gvariant.mkUint32 3;
+              win-switcher-popup-ws-indexes = false;
             };
 
             "org/gnome/shell/keybindings" = {
