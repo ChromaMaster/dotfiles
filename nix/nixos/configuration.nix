@@ -182,7 +182,6 @@
     # Shell tools
     starship
     zoxide
-    direnv
     fzf
     eza
     bat
@@ -244,6 +243,10 @@
     };
 
     neovim = {
+      enable = true;
+    };
+
+    direnv = {
       enable = true;
     };
 
