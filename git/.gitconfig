@@ -44,6 +44,8 @@
 	default = current
 [pull]
 	rebase = true
+[merge]
+	ff = only
 [fetch]
 	prune = true
 [url "git@github.com:"]
