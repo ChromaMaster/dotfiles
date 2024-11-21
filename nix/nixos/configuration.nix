@@ -306,7 +306,7 @@
             };
 
             "org/gnome/shell/extensions/advanced-alt-tab-window-switcher" = {
-              switcher-popup-monitor = lib.gvariant.mkUint32 3;
+              switcher-popup-monitor = lib.gvariant.mkInt32 3;
               win-switcher-popup-ws-indexes = false;
             };
 
