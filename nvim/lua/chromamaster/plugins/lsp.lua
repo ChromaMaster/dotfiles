@@ -152,7 +152,15 @@ return { -- LSP Configuration & Plugins
 			bashls = {},
 
 			-- Python
-			pyright = {},
+			pyright = {
+				settings = {
+					python = {
+						analysis = {
+							extraPaths = { "src" },
+						},
+					},
+				},
+			},
 
 			-- Rust
 			rust_analyzer = {},
