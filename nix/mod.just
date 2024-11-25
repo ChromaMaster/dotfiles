@@ -4,7 +4,7 @@ default:
 
 # Format all nix files using alejandra formatter
 format:
-	find . -type f -iname "*.nix" -exec alejandra {} \;
+	find . -type f -iname "*.nix" -exec nixfmt {} \;
 
 # Switch to current configuration
 switch target="default":
