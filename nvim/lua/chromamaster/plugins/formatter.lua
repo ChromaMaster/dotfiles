@@ -25,6 +25,7 @@ return {
 				nix = { "nixfmt" },
 				bash = { "shfmt" },
 				python = { "isort", "black" },
+				ocaml = { "ocamlformat" },
 			},
 		})
 

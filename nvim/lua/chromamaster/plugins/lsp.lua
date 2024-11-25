@@ -173,6 +173,9 @@ return { -- LSP Configuration & Plugins
 
 			-- Zig
 			zls = {},
+
+			-- OCaml
+			ocamllsp = {},
 		}
 
 		-- For now, in nixos the lsp servers need to be installed manually due to the FHS issues nix has
