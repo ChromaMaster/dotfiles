@@ -15,6 +15,11 @@
           description = "Development environment for OCaml";
         };
 
+        python = {
+          path = ./python;
+          description = "Development environment for Python";
+        };
+
       };
 
       defaultTemplate = self.templates.devenv;
