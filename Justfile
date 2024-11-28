@@ -3,7 +3,7 @@ default:
     @just --list
 
 # Install all configurations
-all: zsh tmux git starship nvim kitty helix intellij zed
+all: zsh tmux git starship nvim kitty helix intellij zed atuin
 
 # Install zsh config
 zsh:
@@ -64,6 +64,9 @@ zed:
 	ln -s $PWD/zed/settings.json ~/.config/zed/settings.json
 	ln -s $PWD/zed/keymap.json ~/.config/zed/keymap.json
 
+atuin:
+	rm -rf ~/.config/atuin/config.toml
+	ln -s $PWD/atuin/config.toml ~/.config/atuin/config.toml
 
 # Include nix module
 mod nix

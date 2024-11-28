@@ -197,6 +197,7 @@
     starship
     zoxide
     fzf
+    atuin # Shell history
     eza
     bat
     diff-so-fancy

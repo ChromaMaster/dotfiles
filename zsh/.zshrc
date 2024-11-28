@@ -27,8 +27,8 @@ zinit light Aloxaf/fzf-tab # Replace zsh's default completion selection menu wit
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
-# eval "$(atuin init zsh --disable-up-arrow)"
-eval "$(fzf --zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
+# eval "$(fzf --zsh)"
 
 # Global configurations
 export EDITOR="nvim"
