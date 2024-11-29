@@ -124,6 +124,9 @@ alias zshrc="nvim ~/.zshrc"
 alias ls="eza --color --icons --git"
 alias tree="eza -T"
 
+## Helpers
+alias venv="source .venv/bin/activate"
+
 ## Docker
 alias docker_rm_all='docker rm $(docker ps --filter status=exited -q)'
 
