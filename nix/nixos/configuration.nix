@@ -168,12 +168,8 @@
     htop
     unzip
     telegram-desktop
-    (nerdfonts.override {
-      fonts = [
-        "DejaVuSansMono"
-        "DroidSansMono"
-      ];
-    })
+    nerd-fonts.dejavu-sans-mono
+    nerd-fonts.droid-sans-mono
     jetbrains.clion
     jetbrains.pycharm-community
     xclip
