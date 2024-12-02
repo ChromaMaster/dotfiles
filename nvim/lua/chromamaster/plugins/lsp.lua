@@ -162,6 +162,9 @@ return { -- LSP Configuration & Plugins
 				},
 			},
 
+			-- Python
+			ruff = {},
+
 			-- Rust
 			rust_analyzer = {},
 
