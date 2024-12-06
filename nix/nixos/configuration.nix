@@ -238,6 +238,10 @@
   ];
 
   programs = {
+    nix-ld = {
+      enable = true;
+    };
+
     gnupg = {
       agent = with pkgs; {
         enable = true;
