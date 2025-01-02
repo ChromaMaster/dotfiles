@@ -95,7 +95,7 @@ SAVEHIST=$HISTSIZE
 HISTDUP=erase # Do not allow duplicates in the history
 ## Entire documentation here: https://zsh.sourceforge.io/Doc/Release/Options.html
 setopt append_history # append to the history file rather than replace it
-setopt share_history # share historyfile across multiple shells
+# setopt share_history # share historyfile across multiple shells
 setopt hist_ignore_space # ignore space prefixed commands
 setopt hist_ignore_dups # do not enter command lines into the history list if they are duplicates of the previous event
 setopt hist_ignore_all_dups # if a new command line being added to the history list duplicates an older one, the older command is removed from the list
