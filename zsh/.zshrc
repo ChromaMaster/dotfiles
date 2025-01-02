@@ -128,7 +128,7 @@ alias tree="eza -T"
 alias venv="source .venv/bin/activate"
 
 ## Docker
-alias docker_rm_all='docker rm $(docker ps --filter status=exited -q)'
+alias docker-rm-all='docker rm $(docker ps --filter status=exited -q)'
 
 ## Distro specific
 DISTRO=$(cat /etc/os-release | grep -e '^ID=' | cut -d '=' -f 2)
@@ -136,18 +136,21 @@ DISTRO=$(cat /etc/os-release | grep -e '^ID=' | cut -d '=' -f 2)
 ## Distro specific
 case "$DISTRO" in
         "debian")
-                alias apt="sudo apt"
-                alias aptlu="sudo apt list --upgradable"
+			alias apt="sudo apt"
+			alias aptlu="sudo apt list --upgradable"
         ;;
 
         "arch")
-                alias pacman="yay"
-                alias pacman_autoremove="pacman -Qqdt | pacman -Rsu -"
+			alias pacman="yay"
+			alias pacman_autoremove="pacman -Qqdt | pacman -Rsu -"
 		;;
 		"nixos")	
+			NIX_SYSTEM_PROFILES="/nix/var/nix/profiles/system"
+
+			alias nix-list-generations="sudo nix-env --list-generations --profile $NIX_SYSTEM_PROFILES"
         ;;
         *)
-                echo "Distro $DISTRO not supported"
+            echo "Distro $DISTRO not supported"
         ;;
 esac
 
