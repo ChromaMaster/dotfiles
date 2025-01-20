@@ -20,6 +20,10 @@
           description = "Development environment for Python";
         };
 
+        go = {
+          path = ./go;
+          description = "Development environment for Golang";
+        };
       };
 
       defaultTemplate = self.templates.devenv;
