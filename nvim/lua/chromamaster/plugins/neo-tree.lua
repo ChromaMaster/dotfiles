@@ -38,5 +38,10 @@ return {
 
 		-- vim.keymap.set("n", "<C-b>", ":Neotree focus<CR>", { desc = "Toggle file browser" })
 		vim.keymap.set("n", "\\", ":Neotree focus<CR>", { desc = "Toggle file browser" })
+
+		-- Replace netrw :Rex command so it opens neo-tree instead
+		vim.api.nvim_create_user_command("Rex", function()
+			vim.cmd(":Neotree position=current")
+		end, {})
 	end,
 }
