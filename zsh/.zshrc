@@ -183,7 +183,7 @@ function umount_all() {
 
 function git-set-remotes(){
 	if [ $1 = "help" ]; then
-		echo "Usage: $0 <srht-remote> <github-remote>"
+		echo "Usage: $0 <codeberg-remote> <github-remote>"
 		return 0
 	fi
 
@@ -193,7 +193,7 @@ function git-set-remotes(){
     fi
  
     if [ $# -lt 2 ]; then
-        echo "ERROR: Need 4 arguments: <srht ulr> <gh url>"
+        echo "ERROR: Need 4 arguments: <codeberg ulr> <github url>"
         return 1
     fi
  
@@ -202,7 +202,7 @@ function git-set-remotes(){
         git remote -v remove $remote
     done
  
-    git remote add srht $1
+    git remote add codeberg $1
     git remote add github $2
  
     git remote add origin $1
