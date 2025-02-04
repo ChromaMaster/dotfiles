@@ -238,6 +238,9 @@
     gnome-tweaks
     gnomeExtensions.appindicator
     gnomeExtensions.advanced-alttab-window-switcher
+
+    # Other software
+    obsidian
   ];
 
   programs = {
