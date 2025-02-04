@@ -160,7 +160,6 @@
     # Basics
     vim
     git
-    kitty
     wget
     curl
     file
@@ -176,6 +175,10 @@
     killall
     zed-editor
     vscode
+
+    # Terminal emulators
+    kitty
+    ghostty
 
     # Build essentials
     binutils
@@ -374,7 +377,7 @@
 
             "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
               name = "Terminal";
-              command = "kitty";
+              command = "ghostty";
               binding = "<Super>Return";
             };
           };

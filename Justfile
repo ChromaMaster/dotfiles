@@ -3,7 +3,7 @@ default:
     @just --list
 
 # Install all configurations
-all: zsh tmux git starship nvim kitty helix intellij zed atuin
+all: zsh tmux git starship nvim kitty ghostty helix intellij zed atuin
 
 # Install zsh config
 zsh:
@@ -47,6 +47,11 @@ nvim:
 kitty:
     rm -rf ~/.config/kitty
     ln -s $PWD/kitty ~/.config
+
+# Install ghostty config
+ghostty:
+    rm -rf ~/.config/ghostty
+    ln -s $PWD/ghostty ~/.config
 
 # Install helix config
 helix:
