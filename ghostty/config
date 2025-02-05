@@ -1,3 +1,6 @@
 # Theme
 theme = tokyonight_night
 
+# Keybingings
+## This one will allow to use c+h to move between tmux panes
+keybind = ctrl+h=esc:[104;5u
