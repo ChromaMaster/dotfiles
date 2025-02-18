@@ -42,6 +42,7 @@
 	patchs = !git diff --staged --patch-with-stat \"$@\" > 0001-staged.patch
 	gone-branches = !git remote prune origin && git branch -v | grep -F "[gone]" | awk '{print $1}'
 	remove-gone-branches = !git gone-branches | xargs -I {} git branch -D {}
+	switch-back = switch @{-1}
 [push]
 	default = current
 [pull]
