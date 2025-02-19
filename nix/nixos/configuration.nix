@@ -45,14 +45,14 @@
       LC_TIME = "es_ES.UTF-8";
     };
     # Japanese
-    # inputMethod = {
-    #   type = "fcitx5";
-    #   enable = true;
-    #   fcitx5.addons = with pkgs; [
-    #     fcitx5-mozc
-    #     fcitx5-gtk
-    #   ];
-    # };
+    inputMethod = {
+      type = "fcitx5";
+      enable = true;
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
   };
 
   # Enable the X11 windowing system.
