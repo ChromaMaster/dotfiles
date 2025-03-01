@@ -17,7 +17,7 @@
           config.allowUnfree = true;
         };
 
-        python = pkgs.python311;
+        python = pkgs.python313;
         python_packages = python.withPackages (
           ps: with ps; [
             pip
