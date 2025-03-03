@@ -17,6 +17,10 @@ build target="default":
 upgrade target="default": && (switch target)
 	sudo nix flake update
 
+# List generations
+list:
+	sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+
 # Remove old builds of nix
 collect-garbage:
 	sudo nix-collect-garbage --delete-old

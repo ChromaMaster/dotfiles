@@ -23,6 +23,12 @@
             # Configuration shared by all hosts
             ./nixos/configuration.nix
 
+            # Modules shared by all the hosts
+            ./nixos/modules
+
+            # Include specific modules
+            ./nixos/modules/${hostname}.nix
+
             # Host specific configuration
             ./nixos/hosts/${hostname}/configuration.nix
 
