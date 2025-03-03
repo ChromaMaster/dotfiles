@@ -41,6 +41,7 @@
       nixosConfigurations = {
         default = mkHost "personal" "x86_64-linux";
         work = mkHost "work" "x86_64-linux";
+        athlon = mkHost "athlon" "x86_64-linux";
       };
     };
 }
