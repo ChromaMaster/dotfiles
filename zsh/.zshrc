@@ -220,3 +220,6 @@ if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
 fi
 
+if command -v nihongo-no-yobi 2>&1 > /dev/null; then
+	nihongo-no-yobi --hiragana kanji
+fi
