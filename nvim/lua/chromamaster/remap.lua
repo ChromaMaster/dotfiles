@@ -57,6 +57,11 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+vim.keymap.set("n", "<M-h>", "<cmd>vertical resize -5<CR>", { desc = "Decrease vertical size of pane" })
+vim.keymap.set("n", "<M-l>", "<cmd>vertical resize +5<CR>", { desc = "Increase vertical size of pane" })
+vim.keymap.set("n", "<M-j>", "<cmd>resize -3<CR>", { desc = "Decrease horizontal size of pane" })
+vim.keymap.set("n", "<M-k>", "<cmd>resize +3<CR>", { desc = "Increase horizontal size of pane" })
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -69,5 +74,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- Copyes the selected text into the "h" register and open a sed command with the contents: %s/<reg-h>//g
+-- Copies the selected text into the "h" register and open a sed command with the contents: %s/<reg-h>//g
 vim.keymap.set("v", "<leader>s", '"hy:%s/<C-r>h//g<left><left>', { desc = "Replace current highlighted text" })
