@@ -23,7 +23,7 @@ return {
 		-- M-j - Move Down
 		-- M-k - Move Up
 		-- M-l - Move Right
-		require("mini.move").setup()
+		-- require("mini.move").setup()
 
 		-- Simple and easy statusline.
 		--  You could remove this setup call if you don't like it,
@@ -37,6 +37,16 @@ return {
 		---@diagnostic disable-next-line: duplicate-set-field
 		statusline.section_location = function()
 			return ""
+		end
+
+		-- Override the section_filename. In this case it will show only the
+		-- relative file name, if motified and if read only
+		-- f S  Path to the file in the buffer, as typed or relative to current directory.
+		-- m F  Modified flag, text is "[+]"; "[-]" if 'modifiable' is off.
+		-- r F  Readonly flag, text is "[RO]".
+		---@diagnostic disable-next-line: duplicate-set-field
+		statusline.section_filename = function()
+			return "%f%m%r"
 		end
 
 		-- ... and there is more!
