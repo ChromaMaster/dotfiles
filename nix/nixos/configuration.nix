@@ -166,6 +166,7 @@
     lazygit
     tldr
     jq
+    jqp # jq TUI
     yq
 
     # Programming languages
