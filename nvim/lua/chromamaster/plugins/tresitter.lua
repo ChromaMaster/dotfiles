@@ -27,6 +27,11 @@ return {
 			indent = { enable = true },
 		})
 
+		-- Use tresitter for folding
+		vim.wo.foldmethod = "expr"
+		vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.opt.foldenable = false
+
 		-- There are additional nvim-treesitter modules that you can use to interact
 		-- with nvim-treesitter. You should go explore a few and see what interests you:
 		--
