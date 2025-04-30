@@ -109,8 +109,8 @@
 
               switch-applications = [ "disabled" ];
               switch-applications-backwards = [ "disabled" ];
-              switch-windows = [ "<Super>Tab" ];
-              switch-windows-backwards = [ "<Super><Shift>Tab" ];
+              switch-windows = [ "<Alt>Tab" ];
+              switch-windows-backwards = [ "<Shift><Alt>Tab" ];
             };
 
             "org/gnome/settings-daemon/plugins/media-keys" = {
