@@ -40,7 +40,7 @@
 	yolo = !git commit -m \"$(curl -s https://whatthecommit.com/index.txt)\"
 	patch = !git diff --patch-with-stat \"$@\" > 0001-unstaged.patch
 	patchs = !git diff --staged --patch-with-stat \"$@\" > 0001-staged.patch
-	gone-branches = !git remote prune origin && git branch -v | grep -F "[gone]" | awk '{print $1}'
+	gone-branches = !git fetch --prune && git for-each-ref --format '%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads
 	remove-gone-branches = !git gone-branches | xargs -I {} git branch -D {}
 	switch-back = switch @{-1}
 [push]
