@@ -37,9 +37,9 @@
 	uncommit = reset --soft HEAD~1
 	rv = remote -v
 	fixup = !git commit --fixup $(git rev-parse HEAD)
-	yolo = !git commit -m \"$(curl -s https://whatthecommit.com/index.txt)\"
-	patch = !git diff --patch-with-stat \"$@\" > 0001-unstaged.patch
-	patchs = !git diff --staged --patch-with-stat \"$@\" > 0001-staged.patch
+	yolo = !git commit -m 'chore(yolo): $(curl -s https://whatthecommit.com/index.txt)'
+	patch = !git diff --patch-with-stat "$@" > 0001-unstaged.patch
+	patchs = !git diff --staged --patch-with-stat "$@" > 0001-staged.patch
 	gone-branches = !git fetch --prune && git for-each-ref --format '%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads
 	remove-gone-branches = !git gone-branches | xargs -I {} git branch -D {}
 	switch-back = switch @{-1}
