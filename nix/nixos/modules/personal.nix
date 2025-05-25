@@ -2,6 +2,6 @@
   imports = [
     ./user
     ./sound
-    ./gnome
+    ./wm/hyprland
   ];
 }

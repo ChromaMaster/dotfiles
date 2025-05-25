@@ -3,7 +3,7 @@ default:
     @just --list
 
 # Install all configurations
-all: zsh tmux git starship nvim kitty ghostty helix intellij zed atuin
+all: zsh tmux git starship nvim kitty ghostty helix intellij zed atuin hyprland
 
 # Install zsh config
 zsh:
@@ -72,6 +72,10 @@ zed:
 atuin:
 	rm -rf ~/.config/atuin/config.toml
 	ln -s $PWD/atuin/config.toml ~/.config/atuin/config.toml
+
+hyprland:
+	rm -rf ~/.config/hypr
+	ln -s $PWD/hyprland ~/.config/hypr
 
 # Include nix module
 mod nix

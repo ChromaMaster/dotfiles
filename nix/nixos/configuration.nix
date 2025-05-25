@@ -116,6 +116,7 @@
     nixfmt-rfc-style
 
     # Basics
+    nautilus
     vim
     git
     wget
