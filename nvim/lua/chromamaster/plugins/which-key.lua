@@ -13,7 +13,7 @@ return { -- Useful plugin to show you pending keybinds.
 
 		{ "<leader>s", group = "[S]earch" },
 		{ "<leader>b", group = "[B]uffer" },
-		{ "<leader>t", group = "[T]rouble diagnostics" },
+		{ "<leader>d", group = "[D]iagnostics" },
 		{ "<leader>g", group = "[G]it related" },
 	},
 }
