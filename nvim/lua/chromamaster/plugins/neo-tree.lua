@@ -15,7 +15,7 @@ return {
 				enabled = true,
 			},
 			window = {
-				position = "left",
+				position = "float",
 				width = 40,
 				mappings = {
 					["-"] = "open_split",
@@ -35,6 +35,9 @@ return {
 				hijack_netrw_behavior = "open_current",
 			},
 		})
+
+		vim.g.loaded_netrw = 1
+		vim.g.loaded_netrwPlugin = 1
 
 		-- vim.keymap.set("n", "<C-b>", ":Neotree focus<CR>", { desc = "Toggle file browser" })
 		vim.keymap.set("n", "\\", ":Neotree focus<CR>", { desc = "Toggle file browser" })
