@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 {
@@ -22,6 +23,23 @@
     #     hash = "sha256-k8T/lmfgAFxW1nwEyh61lagrlHP5geT2tA7e5j61+qw=";
     #   };
     # })
+  ];
+
+  # https://github.com/NixOS/nixpkgs/issues/100205#issuecomment-2225948931
+  services.dbus.packages = lib.mkAfter [
+    (pkgs.linkFarm "custom-dbus-policy" {
+      "share/dbus-1/system.d/custom-policy.conf" = pkgs.writers.writeText "custom-policy.conf" ''
+        <!-- place this in /etc/dbus-1/system.d or in some systems /usr/share/dbus-1/system.d/ -->
+        <!DOCTYPE busconfig PUBLIC "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
+         "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
+        <busconfig>
+        	<policy user="vlad">
+        		<allow own="*"/>
+        		<allow send_destination="*"/>
+        	</policy>
+        </busconfig>
+      '';
+    })
   ];
 
   # nixpkgs.overlays = [

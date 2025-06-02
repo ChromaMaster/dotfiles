@@ -8,8 +8,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   environment.systemPackages = with pkgs; [
     # Gnome dependencies
@@ -109,8 +109,12 @@
 
               switch-applications = [ "disabled" ];
               switch-applications-backwards = [ "disabled" ];
-              switch-windows = [ "<Alt>Tab" ];
-              switch-windows-backwards = [ "<Shift><Alt>Tab" ];
+
+              switch-windows = [ "<Super>Tab" ];
+              switch-windows-backwards = [ "<Super><Alt>Tab" ];
+
+              switch-input-source = [ "<Control><Alt>space" ];
+              switch-input-source-backward = [ "<Shift><Control><Alt>Space" ];
             };
 
             "org/gnome/settings-daemon/plugins/media-keys" = {
