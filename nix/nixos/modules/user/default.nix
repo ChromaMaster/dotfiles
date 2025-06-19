@@ -13,6 +13,7 @@
         "networkmanager"
         "wheel"
         "docker" # TODO: This should be moved to the docker module once created
+        "dialout"
       ];
       packages = with pkgs; [ ];
       shell = pkgs.zsh; # TODO: This should be moved to the zsh module once created
