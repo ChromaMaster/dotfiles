@@ -24,6 +24,11 @@
           path = ./go;
           description = "Development environment for Golang";
         };
+
+        zig = {
+          path = ./zig;
+          description = "Development environment for Zig";
+        };
       };
 
       defaultTemplate = self.templates.devenv;
