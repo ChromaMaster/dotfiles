@@ -54,27 +54,27 @@
     };
   };
 
-  services.fwupd.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "intl";
-  };
-
-  # Configure console keymap
-  console.keyMap = "us-acentos";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   services = {
     logind = {
       lidSwitchExternalPower = "ignore";
       lidSwitchDocked = "ignore";
       lidSwitch = "ignore";
     };
+
+    fwupd.enable = true;
+
+    # Configure keymap in X11
+    xserver.xkb = {
+      layout = "us";
+      variant = "intl";
+    };
+
+    # Enable CUPS to print documents.
+    printing.enable = true;
   };
+
+  # Configure console keymap
+  console.keyMap = "us-acentos";
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
