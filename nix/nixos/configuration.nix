@@ -68,6 +68,14 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services = {
+    logind = {
+      lidSwitchExternalPower = "ignore";
+      lidSwitchDocked = "ignore";
+      lidSwitch = "ignore";
+    };
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
