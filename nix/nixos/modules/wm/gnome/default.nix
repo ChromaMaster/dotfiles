@@ -16,6 +16,7 @@
     gnome-tweaks
     gnomeExtensions.appindicator
     gnomeExtensions.advanced-alttab-window-switcher
+    gnomeExtensions.focus-follows-workspace
   ];
 
   programs = {
@@ -67,6 +68,7 @@
                 pkgs.gnomeExtensions.user-themes.extensionUuid
                 pkgs.gnomeExtensions.removable-drive-menu.extensionUuid
                 pkgs.gnomeExtensions.advanced-alttab-window-switcher.extensionUuid
+                pkgs.gnomeExtensions.focus-follows-workspace.extensionUuid
               ];
             };
 
