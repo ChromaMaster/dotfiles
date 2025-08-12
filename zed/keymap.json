@@ -11,7 +11,7 @@
     "bindings": {
       // Allow to move between context menu items with (n)ext and (p)revious shortcuts
       "ctrl-n": "editor::ContextMenuNext",
-      "ctrl-p": "editor::ContextMenuPrev",
+      "ctrl-p": "editor::ContextMenuPrevious",
       "ctrl-y": "editor::ConfirmCompletion"
     }
   },
@@ -31,7 +31,7 @@
       "space c a": "editor::ToggleCodeActions",
 
       // Move between tabs
-      "ctrl-a h": "pane::ActivatePrevItem",
+      "ctrl-a h": "pane::ActivatePreviousItem",
       "ctrl-a l": "pane::ActivateNextItem"
     }
   },
@@ -39,10 +39,10 @@
     "context": "Dock || (Editor && vim_mode == normal)",
     "bindings": {
       // Move between panes
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
 
       "space s f": "file_finder::Toggle",
       "space s g": "workspace::NewSearch",
