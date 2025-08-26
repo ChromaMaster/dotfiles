@@ -3,5 +3,6 @@
     ./user
     ./sound
     ./wm/gnome
+    ./virtualization/vm.nix
   ];
 }
