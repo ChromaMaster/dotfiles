@@ -55,10 +55,10 @@
   };
 
   services = {
-    logind = {
-      lidSwitchExternalPower = "ignore";
-      lidSwitchDocked = "ignore";
-      lidSwitch = "ignore";
+    logind.settings.Login = {
+      HandleLidSwitchExternalPower = "ignore";
+      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitch = "ignore";
     };
 
     fwupd.enable = true;
