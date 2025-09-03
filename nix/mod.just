@@ -21,6 +21,9 @@ upgrade target="default": && (switch target)
 list:
 	sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 
+targets:
+	@echo "Available targets are '$(ls nixos/hosts | xargs | tr ' ' ',' | sed 's/personal/default/')'"
+
 # Remove old builds of nix
 collect-garbage:
 	sudo nix-collect-garbage --delete-old

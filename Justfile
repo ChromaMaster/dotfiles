@@ -1,6 +1,6 @@
 # Lists all the possible recipes
 default:
-    @just --list
+    @just --list --list-submodules
 
 # Install all configurations
 all: zsh tmux git starship nvim kitty ghostty helix intellij zed atuin hyprland
