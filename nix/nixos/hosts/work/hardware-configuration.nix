@@ -23,7 +23,7 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
@@ -31,7 +31,8 @@
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-9b6c4068-ed30-48fe-b6ac-a8725c17fe0c".device = "/dev/disk/by-uuid/9b6c4068-ed30-48fe-b6ac-a8725c17fe0c";
+  boot.initrd.luks.devices."luks-9b6c4068-ed30-48fe-b6ac-a8725c17fe0c".device =
+    "/dev/disk/by-uuid/9b6c4068-ed30-48fe-b6ac-a8725c17fe0c";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/1A5F-1F2F";
