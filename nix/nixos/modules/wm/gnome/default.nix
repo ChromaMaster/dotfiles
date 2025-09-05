@@ -59,6 +59,7 @@
 
             "org/gnome/mutter" = {
               workspaces-only-on-primary = true;
+              dynamic-workspaces = false;
             };
 
             "org/gnome/shell" = {
