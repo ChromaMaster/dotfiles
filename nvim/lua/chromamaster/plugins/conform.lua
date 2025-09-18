@@ -35,7 +35,18 @@ return {
 			-- nix = { "alejandra" },
 			nix = { "nixfmt" },
 			bash = { "shfmt" },
-			python = { "isort", "black" },
+			python = function(bufnr)
+				local conform = require("conform")
+				local black_available = conform.get_formatter_info("black", bufnr).available
+				local isort_available = conform.get_formatter_info("isort", bufnr).available
+
+				-- Use black & isort whenever is available, if not, use ruff
+				if black_available and isort_available then
+					return { "isort", "black" }
+				else
+					return { "ruff_fix", "ruff_format", "ruff_organize_imports" }
+				end
+			end,
 			ocaml = { "ocamlformat" },
 		},
 	},
