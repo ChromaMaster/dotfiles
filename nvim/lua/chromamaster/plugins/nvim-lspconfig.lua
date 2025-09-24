@@ -244,7 +244,8 @@ return { -- LSP Configuration & Plugins
 		local distro = vim.fn.system("cat /etc/os-release | grep ^ID= | cut -d= -f2 | tr -d '\n'")
 		if distro == "nixos" then
 			for server_name, opts in pairs(servers) do
-				require("lspconfig")[server_name].setup(opts)
+				vim.lsp.config(server_name, opts)
+				vim.lsp.enable(server_name)
 			end
 
 			return
@@ -274,7 +275,8 @@ return { -- LSP Configuration & Plugins
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for tsserver)
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
+					vim.lsp.config(server_name, server)
+					vim.lsp.enable(server_name)
 				end,
 			},
 		})
