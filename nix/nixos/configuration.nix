@@ -190,6 +190,12 @@
 
     # Other software
     obsidian
+
+    (callPackage (fetchgit {
+      url = "https://codeberg.org/ChromaMaster/nihongo-no-yobi";
+      rev = "v1.3.1";
+      hash = "sha256-pK92/gGbTXKaCueSiZ46aHjd6QyqXJGSbH5m7Kl18r4=";
+    }) { })
   ];
 
   programs = {
