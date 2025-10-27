@@ -26,4 +26,4 @@ targets:
 
 # Remove old builds of nix
 collect-garbage:
-	sudo nix-collect-garbage --delete-old
+	./collect-garbage.sh
