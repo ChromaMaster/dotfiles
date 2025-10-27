@@ -116,6 +116,7 @@ alias open="xdg-open"
 alias hx="helix"
 alias lg="lazygit"
 alias zed="zeditor"
+alias k="kubectl"
 
 alias nvrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
@@ -222,4 +223,9 @@ fi
 
 if command -v nihongo-no-yobi 2>&1 > /dev/null; then
 	nihongo-no-yobi --hiragana kanji
+fi
+
+# Load kubectl completions
+if command -v kubectl 2>&1 > /dev/null; then
+	source <(kubectl completion zsh)
 fi
