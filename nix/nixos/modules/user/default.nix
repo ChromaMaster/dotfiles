@@ -12,7 +12,6 @@
       extraGroups = [
         "networkmanager"
         "wheel"
-        "docker" # TODO: This should be moved to the docker module once created
         "dialout"
       ];
       packages = with pkgs; [ ];

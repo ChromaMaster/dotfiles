@@ -17,4 +17,6 @@
       defaultNetwork.settings.dns_enabled = true;
     };
   };
+
+  users.extraGroups.docker.members = [ "vlad" ];
 }
