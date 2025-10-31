@@ -109,7 +109,6 @@ function safeAlias(){
 	_args=$3
 
 	if ! command -v "$_cmd" 2>&1 > /dev/null; then
-		echo "WARN: Skipping alias for $_alias=\"$_cmd $_args\""
 		return
 	fi
 
