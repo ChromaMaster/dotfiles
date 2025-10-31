@@ -22,11 +22,8 @@ append_path () {
 [ -d "$HOME/bin" ] && append_path "$HOME/bin"
 [ -d "$HOME/.local/bin" ] && append_path "$HOME/.local/bin"
 
-# Go
-append_path "$(go env GOPATH)/bin"
-
-# Ruby & Ge
-append_path "$(gem env user_gemhome)/bin"
+# Go (manual installation)
+append_path "/usr/local/go/bin"
 
 [ -d "$HOME/.local/bin/zig" ] && append_path "$HOME/.local/bin/zig" 
 
