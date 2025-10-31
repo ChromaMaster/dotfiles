@@ -103,12 +103,27 @@ setopt hist_save_no_dups # when writing out the history file, older commands tha
 setopt hist_find_no_dups # when searching for history entries in the line editor, do not display duplicates of a line previously found
 
 # Aliases
+function safeAlias(){
+	_alias=$1
+	_cmd=$2
+	_args=$3
+
+	if ! command -v "$_cmd" 2>&1 > /dev/null; then
+		echo "WARN: Skipping alias for $_alias=\"$_cmd $_args\""
+		return
+	fi
+
+	alias $_alias="$_cmd $_args"
+}
+
 ## Removed aliases
 unalias zi # zinit alias colides with zoxide
 
 ## Command replacement
-alias vim="nvim"
-alias cat="bat"
+safeAlias "vim" "nvim"
+safeAlias "cat" "bat"
+safeAlias "ls" "eza" "--color --icons --git"
+safeAlias "tree" "eza" "-T"
 
 ## Shortcuts
 alias nv="nvim"
@@ -120,10 +135,6 @@ alias k="kubectl"
 
 alias nvrc="nvim ~/.config/nvim/init.vim"
 alias zshrc="nvim ~/.zshrc"
-
-## Default flags
-alias ls="eza --color --icons --git"
-alias tree="eza -T"
 
 ## Helpers
 alias venv="source .venv/bin/activate"

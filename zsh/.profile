@@ -30,3 +30,9 @@ append_path "$(gem env user_gemhome)/bin"
 
 [ -d "$HOME/.local/bin/zig" ] && append_path "$HOME/.local/bin/zig" 
 
+
+# AsyncAPI CLI Autocomplete
+
+ASYNCAPI_AC_BASH_SETUP_PATH=/home/vlad/.cache/@asyncapi/cli/autocomplete/bash_setup && test -f $ASYNCAPI_AC_BASH_SETUP_PATH && source $ASYNCAPI_AC_BASH_SETUP_PATH; # asyncapi autocomplete setup
+
+
