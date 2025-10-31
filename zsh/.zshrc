@@ -121,6 +121,7 @@ unalias zi # zinit alias colides with zoxide
 
 ## Command replacement
 safeAlias "vim" "nvim"
+safeAlias "bat" "batcat" # This is needed for Debian as bat is installed as batcat
 safeAlias "cat" "bat"
 safeAlias "ls" "eza" "--color --icons --git"
 safeAlias "tree" "eza" "-T"
