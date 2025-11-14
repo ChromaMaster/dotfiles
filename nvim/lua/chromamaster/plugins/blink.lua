@@ -39,7 +39,7 @@ return {
 				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
 				["<C-n>"] = { "select_next", "fallback_to_mappings" },
 
-				["<S-k>"] = { "show_signature", "hide_signature", "fallback" },
+				-- ["<S-k>"] = { "show_signature", "hide_signature", "fallback" },
 			},
 
 			appearance = {
