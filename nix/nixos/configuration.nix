@@ -187,6 +187,8 @@
     stylua
     xmlformat
     nodePackages.prettier
+    cmake-format
+    just-lsp
 
     # Other software
     obsidian
@@ -196,6 +198,10 @@
       rev = "v1.3.1";
       hash = "sha256-pK92/gGbTXKaCueSiZ46aHjd6QyqXJGSbH5m7Kl18r4=";
     }) { })
+
+    # See if this needs to be moved to it's own module or something
+    kubectl
+    kubernetes-helm-wrapped
   ];
 
   programs = {
