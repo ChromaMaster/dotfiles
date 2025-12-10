@@ -42,6 +42,21 @@
     })
   ];
 
+  # https://search.nixos.org/options?channel=25.05&show=security.wrappers&from=0&size=50&sort=relevance&type=packages&query=security.wrappers
+  security.wrappers.btmgmt = {
+    source = "${pkgs.bluez}/bin/btmgmt";
+    capabilities = "cap_net_raw+eip cap_net_admin+eip";
+    owner = "root";
+    group = "root";
+  };
+
+  security.wrappers.hciconfig = {
+    source = "${pkgs.bluez}/bin/hciconfig";
+    capabilities = "cap_net_raw+eip cap_net_admin+eip";
+    owner = "root";
+    group = "root";
+  };
+
   # nixpkgs.overlays = [
   #   # Fixes the version of zoom to a working one
   #   (final: prev: {

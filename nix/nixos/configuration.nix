@@ -17,6 +17,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.supportedFilesystems = [ "nfs" ];
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -121,8 +123,6 @@
     telegram-desktop
     nerd-fonts.dejavu-sans-mono
     nerd-fonts.droid-sans-mono
-    jetbrains.clion
-    jetbrains.pycharm-community
     xclip
     killall
     zed-editor
