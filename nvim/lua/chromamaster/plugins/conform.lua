@@ -48,6 +48,9 @@ return {
 				end
 			end,
 			ocaml = { "ocamlformat" },
+			c = { "clang-format" },
+			cpp = { "clang-format" },
+			cmake = { "cmake_format" },
 		},
 	},
 	init = function()

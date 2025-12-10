@@ -236,7 +236,10 @@ return { -- LSP Configuration & Plugins
 			zls = {},
 
 			-- OCaml
-			ocamllsp = {},
+			-- ocamllsp = {},
+
+			-- Just
+			just = {},
 		}
 
 		-- For now, in nixos the lsp servers need to be installed manually due to the FHS issues nix has

@@ -1,19 +1,17 @@
 return {
 	"ChromaMaster/gitpermalink.nvim",
-	dependencies = {
-		{ "j-hui/fidget.nvim", opts = { notification = { window = { align = "top" } } } },
-	},
+	-- dir = "~/Workspace/Personal/gitpermalink.nvim",
 	keys = {
 		{
-			"<leader>gpl",
+			"<leader>gl",
 			function()
-				require("gitpermalink").permalink()
+				require("gitpermalink").permalink({ open = false })
 			end,
 			mode = { "n", "v" },
-			desc = "[G]it [P]erma[L]ink",
+			desc = "[G]it Perma[L]ink",
 		},
 		{
-			"<leader>gpr",
+			"<leader>glr",
 			function()
 				vim.cmd("Lazy reload gitpermalink.nvim")
 			end,
@@ -24,12 +22,9 @@ return {
 	opts = {
 		notifications = {
 			enable = true,
-			provider = function()
-				return require("fidget.notification").notify
-			end,
 		},
 		debug = {
-			enable = false,
+			enable = true,
 		},
 	},
 }

@@ -15,7 +15,7 @@ return {
 				enabled = true,
 			},
 			window = {
-				position = "float",
+				position = "left",
 				width = 40,
 				mappings = {
 					["-"] = "open_split",
@@ -30,7 +30,7 @@ return {
 				},
 				follow_current_file = {
 					enabled = true,
-					leave_dirs_open = false,
+					leave_dirs_open = true,
 				},
 				hijack_netrw_behavior = "open_current",
 			},
