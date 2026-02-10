@@ -1,0 +1,3 @@
+[submodule "nix/home-manager/hosts/work"]
+	path = nix/home-manager/hosts/work
+	url = ssh://git@codeberg.org/ChromaMaster/nix-host-work.git

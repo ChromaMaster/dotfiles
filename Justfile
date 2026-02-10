@@ -3,7 +3,8 @@ default:
     @just --list --list-submodules
 
 # Install all configurations
-all: zsh tmux git starship nvim kitty ghostty helix intellij zed atuin hyprland
+#all: zsh tmux git starship nvim kitty ghostty helix intellij zed atuin hyprland
+all: zsh tmux git starship nvim kitty atuin
 
 # Install zsh config
 zsh:
@@ -76,6 +77,13 @@ atuin:
 hyprland:
 	rm -rf ~/.config/hypr
 	ln -s $PWD/hyprland ~/.config/hypr
+
+nix-home-manager:
+	rm -rf ~/.config/home-manager/flake.nix ~/.config/home-manager/home.nix ~/.config/home-manager/flake.lock
+	# Hardlinks otherwise home-manager does not work
+	ln $PWD/nix/home-manager/hosts/work/flake.nix ~/.config/home-manager/
+	ln $PWD/nix/home-manager/hosts/work/home.nix ~/.config/home-manager/
+	ln $PWD/nix/home-manager/hosts/work/flake.lock ~/.config/home-manager/
 
 # Include nix module
 mod nix
