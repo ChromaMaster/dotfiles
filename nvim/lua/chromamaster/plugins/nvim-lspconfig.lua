@@ -1,19 +1,21 @@
--- LSP stands for Language Server Protocol. It's a protocol that helps editors
--- and language tooling communicate in a standardized fashion.
---
--- In general, you have a "server" which is some tool built to understand a particular
--- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc). These Language Servers
--- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
--- processes that communicate with some "client" - in this case, Neovim!
-return { -- LSP Configuration & Plugins
+-- LSP Configuration & Plugins
+return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		-- Language Servers are external tools that must be installed separately from
-		-- Neovim. This is where `mason` and related plugins come into play.
-		-- Automatically install LSPs and related tools to stdpath for neovim
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		-- Automatically install LSPs and related tools to stdpath for Neovim
+		-- Mason must be loaded before its dependents so we need to set it up here.
+		-- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
+		{ "mason-org/mason.nvim", opts = {} },
+
+		-- To use mason mappings within the mason-tool-installer
+		"mason-org/mason-lspconfig.nvim",
+
+		{
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			opts = {
+				integrations = { ["mason-lspconfig"] = true, ["mason-null-ls"] = false, ["mason-nvim-dap"] = false },
+			},
+		},
 
 		-- Extensible UI for Neovim notifications and LSP progress messages.
 		-- Useful status updates for LSP.
@@ -78,33 +80,14 @@ return { -- LSP Configuration & Plugins
 				--  See `:help K` for why this keymap
 				map("K", vim.lsp.buf.hover, "Hover Documentation")
 
-				-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-				---@param client vim.lsp.Client
-				---@param method vim.lsp.protocol.Method
-				---@param bufnr? integer some lsp support methods only in specific files
-				---@return boolean
-				local function client_supports_method(client, method, bufnr)
-					if vim.fn.has("nvim-0.11") == 1 then
-						return client:supports_method(method, bufnr)
-					else
-						return client.supports_method(method, { bufnr = bufnr })
-					end
-				end
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
 				--    See `:help CursorHold` for information about when this is executed
 				--
 				-- When you move your cursor, the highlights will be cleared (the second autocommand).
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
-				if
-					client
-					and client_supports_method(
-						client,
-						vim.lsp.protocol.Methods.textDocument_documentHighlight,
-						event.buf
-					)
-				then
-					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+				if client and client:supports_method("textDocument/documentHighlight", event.buf) then
+					local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 						buffer = event.buf,
 						group = highlight_augroup,
@@ -118,12 +101,17 @@ return { -- LSP Configuration & Plugins
 					})
 
 					vim.api.nvim_create_autocmd("LspDetach", {
-						group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+						group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 						callback = function(event2)
 							vim.lsp.buf.clear_references()
-							vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+							vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
 						end,
 					})
+				end
+				if client and client:supports_method("textDocument/inlayHint", event.buf) then
+					map("<leader>th", function()
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+					end, "[T]oggle Inlay [H]ints")
 				end
 			end,
 		})
@@ -172,39 +160,41 @@ return { -- LSP Configuration & Plugins
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
 			-- Lua
-			lua_ls = {
-				-- cmd = {...},
-				-- filetypes { ...},
-				-- capabilities = {},
-				settings = {
-					Lua = {
-						runtime = { version = "LuaJIT" },
-						workspace = {
-							checkThirdParty = false,
-							-- Tells lua_ls where to find all the Lua files that you have loaded
-							-- for your neovim configuration.
-							library = {
-								"${3rd}/luv/library",
-								unpack(vim.api.nvim_get_runtime_file("", true)),
-							},
-							-- If lua_ls is really slow on your computer, you can try this instead:
-							-- library = { vim.env.VIMRUNTIME },
-						},
-						completion = {
-							callSnippet = "Replace",
-						},
-						diagnostics = {
-							-- Get the language server to recognize the `vim` global
-							globals = { "vim" },
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							-- disable = { 'missing-fields' }
-						},
-					},
-				},
-			},
+			lua_ls = {},
+			stylua = {},
+			-- lua_ls = {
+			-- 	-- cmd = {...},
+			-- 	-- filetypes { ...},
+			-- 	-- capabilities = {},
+			-- 	settings = {
+			-- 		Lua = {
+			-- 			runtime = { version = "LuaJIT" },
+			-- 			workspace = {
+			-- 				checkThirdParty = false,
+			-- 				-- Tells lua_ls where to find all the Lua files that you have loaded
+			-- 				-- for your neovim configuration.
+			-- 				library = {
+			-- 					"${3rd}/luv/library",
+			-- 					unpack(vim.api.nvim_get_runtime_file("", true)),
+			-- 				},
+			-- 				-- If lua_ls is really slow on your computer, you can try this instead:
+			-- 				-- library = { vim.env.VIMRUNTIME },
+			-- 			},
+			-- 			completion = {
+			-- 				callSnippet = "Replace",
+			-- 			},
+			-- 			diagnostics = {
+			-- 				-- Get the language server to recognize the `vim` global
+			-- 				globals = { "vim" },
+			-- 				-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+			-- 				-- disable = { 'missing-fields' }
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
 
 			-- CMake
-			cmake = {}, -- Cmake
+			cmake = {},
 
 			-- Bash
 			bashls = {},
@@ -245,42 +235,57 @@ return { -- LSP Configuration & Plugins
 		-- For now, in nixos the lsp servers need to be installed manually due to the FHS issues nix has
 		-- https://www.reddit.com/r/NixOS/comments/13uc87h/masonnvim_broke_on_nixos/
 		local distro = vim.fn.system("cat /etc/os-release | grep ^ID= | cut -d= -f2 | tr -d '\n'")
-		if distro == "nixos" then
-			for server_name, opts in pairs(servers) do
-				vim.lsp.config(server_name, opts)
-				vim.lsp.enable(server_name)
-			end
+		if distro ~= "nixos" then
+			-- You can add other tools here that you want Mason to install
+			-- for you, so that they are available from within Neovim.
+			local ensure_installed = vim.tbl_keys(servers or {})
+			vim.list_extend(ensure_installed, {
+				"tree-sitter-cli",
+			})
 
-			return
+			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		end
 
-		-- Ensure the servers and tools above are installed
-		--  To check the current status of installed tools and/or manually install
-		--  other tools, you can run
-		--    :Mason
-		--
-		--  You can press `g?` for help in this menu
-		require("mason").setup()
+		for server_name, opts in pairs(servers) do
+			opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, opts.capabilities or {})
+			vim.lsp.config(server_name, opts)
+			vim.lsp.enable(server_name)
+		end
 
-		-- You can add other tools here that you want Mason to install
-		-- for you, so that they are available from within Neovim.
-		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, {
-			"stylua", -- Used to format lua code
-		})
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+		-- Special Lua Config, as recommended by neovim help docs
+		vim.lsp.config("lua_ls", {
+			on_init = function(client)
+				if client.workspace_folders then
+					local path = client.workspace_folders[1].name
+					if
+						path ~= vim.fn.stdpath("config")
+						and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+					then
+						return
+					end
+				end
 
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					-- This handles overriding only values explicitly passed
-					-- by the server configuration above. Useful when disabling
-					-- certain features of an LSP (for example, turning off formatting for tsserver)
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					vim.lsp.config(server_name, server)
-					vim.lsp.enable(server_name)
-				end,
+				client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+					runtime = {
+						version = "LuaJIT",
+						path = { "lua/?.lua", "lua/?/init.lua" },
+					},
+					workspace = {
+						checkThirdParty = false,
+						-- NOTE: this is a lot slower and will cause issues when working on your own configuration.
+						--  See https://github.com/neovim/nvim-lspconfig/issues/3189
+						library = vim.api.nvim_get_runtime_file("", true),
+					},
+					diagnostics = {
+						-- Get the language server to recognize the `vim` global
+						globals = { "vim" },
+						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+						-- disable = { 'missing-fields' }
+					},
+				})
+			end,
+			settings = {
+				Lua = {},
 			},
 		})
 	end,
