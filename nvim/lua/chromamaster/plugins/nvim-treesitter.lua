@@ -1,10 +1,9 @@
 -- Highlight, edit, and navigate code
 return {
 	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-
 		local filetypes = {
 			"lua",
 			"vim",
@@ -31,10 +30,10 @@ return {
 				vim.treesitter.start()
 			end,
 		})
-		-- Use tresitter for folding
-		-- vim.wo.foldmethod = "expr"
-		-- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-		-- vim.opt.foldenable = false
+
+		-- Use treesitter for folding
+		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.wo[0][0].foldmethod = "expr"
 	end,
 	opts = {
 		highlight = { enable = true },
