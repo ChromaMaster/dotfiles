@@ -236,7 +236,18 @@ if command -v nihongo-no-yobi 2>&1 > /dev/null; then
 	nihongo-no-yobi --hiragana kanji
 fi
 
-# Load kubectl completions
-if command -v kubectl 2>&1 > /dev/null; then
-	source <(kubectl completion zsh)
-fi
+# Load completions
+function completions(){
+	if command -v kubectl 2>&1 > /dev/null; then
+		source <(kubectl completion zsh)
+	fi
+
+	if command -v just 2>&1 > /dev/null; then
+		source <(just --completions zsh)
+	fi
+
+	if command -v k0s 2>&1 > /dev/null; then
+		source <(k0s completion zsh)
+	fi
+}
+completions
