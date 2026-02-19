@@ -26,6 +26,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 	config = function()
+		local additional_rg_args = { "--no-ignore", "--hidden", "--glob", "!**/*.pb.{cc,h}" }
+
 		require("telescope").setup({
 			defaults = {
 				file_ignore_patterns = { ".git/" },
@@ -36,6 +38,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 					no_ignore = true,
 					follow = "yes",
 				},
+				live_grep = { additional_args = additional_rg_args },
+				grep_string = { additional_args = additional_rg_args },
 			},
 			extensions = {
 				["ui-select"] = {
