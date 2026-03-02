@@ -1,6 +1,6 @@
 [user]
 	name = ChromaMaster
-	email = vladtel.dev@gmail.com
+	email = dev@vateletin.es
 [init]
 	defaultBranch = main
 	templateDir = ~/.git-template
@@ -55,7 +55,7 @@
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [includeIf "gitdir:~/Workspace/Work/"]
-	path = ~/Workspace/Work/.gitconfig-work
+	path = ~/Workspace/Work/.gitconfig
 [includeIf "gitdir:~/Workspace/Personal/"]
-	path = ~/Workspace/Personal/.gitconfig-personal
+	path = ~/Workspace/Personal/.gitconfig
 
