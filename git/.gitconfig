@@ -43,6 +43,7 @@
 	gone-branches = !git fetch --prune && git for-each-ref --format '%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads
 	remove-gone-branches = !git gone-branches | xargs -I {} git branch -D {}
 	switch-back = switch @{-1}
+	local-ignore = !bash -c "'f() { if ! [ -d .git/info ]; then mkdir .git/info; fi;}; f && ${EDITOR:-nvim} .git/info/exclude'"
 [push]
 	default = current
 [pull]
