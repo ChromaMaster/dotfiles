@@ -235,16 +235,15 @@ return {
 		-- For now, in nixos the lsp servers need to be installed manually due to the FHS issues nix has
 		-- https://www.reddit.com/r/NixOS/comments/13uc87h/masonnvim_broke_on_nixos/
 		local distro = vim.fn.system("cat /etc/os-release | grep ^ID= | cut -d= -f2 | tr -d '\n'")
-		if distro ~= "nixos" then
-			-- You can add other tools here that you want Mason to install
-			-- for you, so that they are available from within Neovim.
-			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
-				"tree-sitter-cli",
-			})
+		-- if distro ~= "nixos" then -- end
+		-- You can add other tools here that you want Mason to install
+		-- for you, so that they are available from within Neovim.
+		local ensure_installed = vim.tbl_keys(servers or {})
+		vim.list_extend(ensure_installed, {
+			"tree-sitter-cli",
+		})
 
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-		end
+		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		for server_name, opts in pairs(servers) do
 			opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, opts.capabilities or {})
