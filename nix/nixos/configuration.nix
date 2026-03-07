@@ -108,7 +108,7 @@
 
     ## Formatter
     alejandra
-    nixfmt-rfc-style
+    nixfmt
 
     # Basics
     nautilus
