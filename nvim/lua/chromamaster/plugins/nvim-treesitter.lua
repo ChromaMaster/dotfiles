@@ -18,10 +18,13 @@ return {
 			"lua",
 			"luadoc",
 			"c",
+			"cpp",
 			"go",
 			"rust",
 			"zig",
 			"python",
+			"json",
+			"yaml",
 		}
 
 		require("nvim-treesitter").install(filetypes)
@@ -29,12 +32,18 @@ return {
 			pattern = filetypes,
 			callback = function()
 				vim.treesitter.start()
+
+				vim.wo.foldmethod = "expr"
+				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+				-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+				vim.opt.foldenable = true
+				vim.opt.foldlevel = 99
 			end,
 		})
 
-		-- Use treesitter for folding
-		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-		vim.wo[0][0].foldmethod = "expr"
+		-- -- Use treesitter for folding
+		-- vim.opt.foldmethod = "expr"
+		-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 	end,
 	opts = {
 		highlight = { enable = true },
