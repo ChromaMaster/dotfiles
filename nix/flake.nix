@@ -3,6 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # Custom packages
+    nihongo-no-yobi.url = "git+https://codeberg.org/ChromaMaster/nihongo-no-yobi";
   };
 
   outputs =
@@ -20,6 +23,8 @@
             inherit inputs;
           };
           modules = [
+            { nixpkgs.overlays = [ inputs.nihongo-no-yobi.overlays.default ]; }
+
             # Configuration shared by all hosts
             ./nixos/configuration.nix
 
