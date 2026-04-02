@@ -158,6 +158,7 @@
     fd
     ripgrep
     lazygit
+
     tldr
     jq
     jqp # jq TUI
@@ -186,7 +187,7 @@
     # Formatters
     stylua
     xmlformat
-    nodePackages.prettier
+    prettier
     cmake-format
     just-lsp
 
