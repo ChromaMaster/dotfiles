@@ -230,6 +230,9 @@ return {
 
 			-- Just
 			just = {},
+
+			-- Protobuf
+			buf_ls = {},
 		}
 
 		-- For now, in nixos the lsp servers need to be installed manually due to the FHS issues nix has
