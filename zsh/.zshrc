@@ -122,7 +122,7 @@ unalias zi # zinit alias colides with zoxide
 safeAlias "vim" "nvim"
 safeAlias "bat" "batcat" # This is needed for Debian as bat is installed as batcat
 safeAlias "cat" "bat"
-safeAlias "ls" "eza" "--color --icons --git"
+safeAlias "ls" "eza" "--color --icons --git --group"
 safeAlias "tree" "eza" "-T"
 
 ## Shortcuts
@@ -151,18 +151,19 @@ case "$DISTRO" in
 			alias apt="sudo apt"
 			alias aptlu="sudo apt list --upgradable"
         ;;
-
         "arch")
 			alias pacman="yay"
 			alias pacman_autoremove="pacman -Qqdt | pacman -Rsu -"
 		;;
-		"nixos")	
+		"nixos")
 			NIX_SYSTEM_PROFILES="/nix/var/nix/profiles/system"
 
 			alias nix-list-generations="sudo nix-env --list-generations --profile $NIX_SYSTEM_PROFILES"
         ;;
+		"ubuntu")
+		;;
         *)
-            echo "Distro $DISTRO not supported"
+            echo "Distro $DISTRO not supported\r\n"
         ;;
 esac
 
