@@ -128,6 +128,7 @@
     zed-editor
     vscode
     librewolf
+    vivaldi
 
     # Terminal emulators
     kitty
