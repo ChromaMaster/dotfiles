@@ -167,6 +167,11 @@ case "$DISTRO" in
         ;;
 esac
 
+# Source environmental variables set within home-manager
+if [ -f ~/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then
+	source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+fi
+
 # Helpful functions
 function untilSucceeds() {
     while true; do $@ && break; sleep 0.5; done
